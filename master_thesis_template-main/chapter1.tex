@@ -1,0 +1,298 @@
+% Chapter 1 placeholder
+\section{背景}
+
+物性物理学において,電子間のクーロン相互作用が強く働く強相関電子系の研究は,極めて重要なテーマの一つである.
+
+通常の金属では,電子は互いに独立した自由電子として振る舞うというバンド理論によってその性質がよく記述される.
+
+しかし強相関電子系においては,電子同士の強い斥力によってバンド理論の予測が破綻し,多彩で特異な物理現象が引き起こされる.
+
+その最も代表的な現象が,電子が各原子サイトに局在して金属から絶縁体へと相転移するモット転移である.
+
+このモット転移をはじめとする強相関電子系の振る舞いを記述する最も基礎的な理論模型として,ハバードモデルが広く用いられている.
+
+ハバードモデルは,電子が隣接サイトへ移動する運動エネルギーと,同一サイトに2つの電子が占有した際に生じる局所的なクーロン斥力エネルギーの競合を表現した模型である.
+
+これまで,このハバードモデルにおけるモット転移を解析するための標準的な手法として,動的平均場理論が確立され大きな成功を収めてきた.
+
+動的平均場理論は,格子全体の多体系の問題を,無限個の電子の浴と結合した単一の有効不純物問題にマッピングすることで解を求める強力な手法である.
+
+しかしこの手法は,マッピングされた不純物問題を厳密に解くために,極めて計算負荷の大きい数値計算ソルバーを必要とする.
+
+このような背景から,重い不純物ソルバーを用いずに,極めて低い計算コストでモット転移を定量的に記述できる新しい近似手法の開発が強く求められてきた.
+
+\section{関連研究}
+
+\subsection{動的平均場理論}
+
+強相関電子系の理論的枠組みとして,現在最も成功を収めている手法の一つが動的平均場理論である.
+
+この理論は,空間的な揺らぎを無視する代わりに,時間的な量子揺らぎを厳密に取り扱う手法である.
+
+具体的には,格子上の多体問題を,無限個の自由電子の浴と結合した単一の不純物問題にマッピングして自己無撞着に解を求める.
+
+特に空間次元が無限大の極限においては,この不純物問題へのマッピングが厳密に成立することが知られている.
+
+動的平均場理論は金属状態とモット絶縁体状態の両方を統一的に記述できるため,モット転移の解析における標準的な手法として広く用いられている.
+
+しかし,マッピングされた不純物問題を近似なしに解くためには,連続時間量子モンテカルロ法などの高度な数値計算ソルバーが必要となる.
+
+これらの厳密な不純物ソルバーは極めて計算負荷が大きく,スーパーコンピュータを用いたとしても膨大な計算時間が要求される.
+
+そのため,より複雑な多軌道系や大規模な格子モデルへの適用においては,計算コストの爆発的な増大が研究を進める上での大きな障壁となっている.
+\subsection{Gutzwiller近似}
+Gutzwiller近似では,クーロン相互作用の効果を取り入れるために次のような相関因子を導入したGutzwiller試行関数を提唱した.
+\begin{equation}
+    \psi_{\text{G}}=\prod_{j}\dkako{1-\kako{1-g}\hat{n}_{j\ua}\hat{n}_{j\da}}\psi_{\text{0}}=\mathscr{P}_{\text{G}}\psi_{0}.
+\end{equation}
+ここで\(\psi_{0}\)は自由電子の波動関数であり,ここでは平面波によるフェルミ球を考える.
+
+射影演算子\(\mathscr{P}\)に含まれるパラメータ\(g\)はGutzwiller因子と呼ばれ,\(0<g<1\)である.
+つまり電子が二重占有しなければそのまま,二重占有していれば\(g\)倍され,重みが減少する.
+
+この試行関数による変分エネルギーは次で与えられる.
+\begin{equation}
+\begin{split}
+    \ov{E(g)}{N_{s}}&=\ov{\bra{\psi_{\text{G}}}\h\ket{\psi_{\text{G}}}}{N_{s}\braket{\psi_{\text{G}}}}\\
+        &=\ov{\bra{\psi_{\text{G}}}-\sum_{i,j,\si}t_{ij}\hat{c}\dgr_{i\si}\hat{c}_{j\si}\ket{\psi_{\text{G}}}+\bra{\psi_{\text{G}}}U\sum_{i}\hat{n}_{i\ua}\hat{n}_{i\da}\ket{\psi_{\text{G}}}}{N_{s}\braket{\psi_{\text{G}}}}.
+\end{split}
+\label{eq:var_energy}
+\end{equation}
+
+\(N_{s}\)はサイト数.
+
+変分法によって\(E(g)\)を\(g\)に対して最小にする.
+
+変分エネルギーの計算をそのままするのは難しいので確率論と近似を用いて求める.
+
+まず全サイト数を\(N_{s}\),各スピンの電子の数を\(N_{\ua}\),\(N_{\da}\),二重占有サイトの数を\(D\)とする.
+
+またサイト数との比として\(n_{\ua}=N_{\ua}/N_{s}\),\(n_{\da}=N_{\da}/N_{s}\),\(d=D/N_{s}\)とする.
+
+\(\psi_{0}\)は各サイトにばら撒かれた電子の状態の重ね合わせである.
+
+この分布が持つ状態を,二重占有サイトの数\(D\)によって分類する.
+
+配置の場合の数を考えると\(N_{s}\),\(N_{\ua}\),\(N_{\da}\)に対して一定の\(D\)を持つ電子配列の数\(N_{D}\)は重複組み合わせを考えて
+\begin{equation}
+    N_{D}\kako{N_{s},N_{\ua},N_{\da}}=\ov{N_{s}!}{\kako{N_{\ua}-D}!\kako{N_{\da}-D}!D!\kako{N_{s}-N_{\ua}-N_{\da}+D}!}.\label{eq:ND}
+\end{equation}
+
+また,サイト占有に対して空間的な相関無視,つまり各サイトに各状態の電子が存在する確率が独立だとすればスピン\(\si\)を持つ\(N_{\si}\)個の電子があるひとつの配列を取る確率は
+\begin{equation}
+    P\kako{N_{s},N_{\si}}=n_{\si}^{N_{\si}}\kako{1-n_{\si}}^{N_{s}-N_{\si}}.\label{eq:prob}
+\end{equation}
+
+このとき波動関数\(\psi_{\text{G}}\)は
+\begin{equation}
+    \ket{\psi_{\text{G}}}=g^{\hat{D}}\ket{\psi_{0}}
+\end{equation}
+で表される.
+
+ここで,ある特定の電子配置が指定された状態を\(\ket{\alpha}\)とすれば,規格化因子は完全系で展開して
+\begin{equation}
+\begin{split}
+    \braket{\psi_{\text{G}}}&=\sum_{\alpha}\bra{\psi_{0}}g^{\hat{D}}\ket{\alpha}\bra{\alpha}g^{\hat{D}}\ket{\psi_{\text{0}}}\\
+    &=\sum_{\alpha}g^{2D}|\braket{\alpha|\psi_{0}}|^2.
+\end{split}
+\end{equation}
+
+さらに\(|\braket{\alpha}{\psi_{0}}|^2\)をサイト間の相関を無視し,各サイトにどのスピンの電子が入っているか独立であるとすると,先ほど求めた確率の積で表すことができ
+
+\begin{equation}
+    |\braket{\alpha}{\psi_{0}}|^2 \approx P\kako{N_{s},N_{\ua}}P\kako{N_{s},N_{\da}}
+\end{equation}
+となる.
+
+二重占有数\(D\)になる配置の数は\(N_{D}\kako{N_{s},N_{\ua},N_{\da}}\)であるので
+\begin{equation}
+    \braket{\psi_{\text{G}}}\approx \sum_{D}g^{2D}N_{D}\kako{N_{s},N_{\ua},N_{\da}}P\kako{N_{s},N_{\ua}}P\kako{N_{s},N_{\da}}
+\end{equation}
+とかける.
+
+この二重占有サイト数\(D\)に関しての和を解析的に計算するのは容易ではないため熱力学極限\((N_{s}\rightarrow \infty)\)をとり\(D\)に関する和のなかで最大となるものだけを考える.
+
+その項は
+\begin{equation}
+    \henbi{}{D}\ckako{\ov{g^{2D}}{D!\kako{N_{ua}-D}!\kako{N_{da}-D}!\kako{N_{s}-N_{ua}-N_{da}+D}!}}=0
+\end{equation}
+という\(D\)が満たす条件をかける\(\kako{このときのDをD^{*}\text{とよぶ}}\).
+
+ここで\(D\)は離散なので,被微分関数を\(F(D)\)とすれば\(F(D^{*}+1),F(D^{*})\)の比が1であればよく
+%\begin{equation}
+%\begin{split}
+ %   &\ov{F(D^{*}+1)}{F(D^{*})}\\
+  %  &=\ov{g^{2D^{*}+1}}{g^{2D^{*}}}\ov{D^{*}!}{\kako{D^{*}+1}!}\ov{\kako{N_{\ua}-D^{*}}!}{\kako{N_{ua}-D^{*}-1}!}\ov{\kako{N_{\da}-D^{*}}!}{\kako{N_{\da}-D^{*}-1}!}\ov{\kako{N_{s}-N_{\ua}-N_{\da}+D^{*}}!}{\kako{N_{s}-N{\ua}-N_{\da}+D^{*}+1}!}\\
+   % &=g^{2}\ov{1}{D^{*}+1}\kako{N_{\ua}-D^{*}}\kako{N_{\da}-D^{*}}\ov{1}{N_{s}-N_{\ua}-N_{\da}+D^{*}+1}
+%\end{split}
+%\end{equation}
+
+\begin{small}
+\begin{equation}
+\begin{split}
+    &\ov{F(D^{*}+1)}{F(D^{*})}\\
+    &=\ov{g^{2D^{*}+1}}{g^{2D^{*}}}\ov{D^{*}!}{\kako{D^{*}+1}!}\ov{\kako{N_{\ua}-D^{*}}!}{\kako{N_{\ua}-D^{*}-1}!}\ov{\kako{N_{\da}-D^{*}}!}{\kako{N_{\da}-D^{*}-1}!}\ov{\kako{N_{s}-N_{\ua}-N_{\da}+D^{*}}!}{\kako{N_{s}-N_{\ua}-N_{\da}+D^{*}+1}!}\\
+    &=g^{2}\ov{1}{D^{*}+1}\kako{N_{\ua}-D^{*}}\kako{N_{\da}-D^{*}}\ov{1}{N_{s}-N_{\ua}-N_{\da}+D^{*}+1},
+\end{split}
+\end{equation}
+\end{small}
+と変形できる.
+
+熱力学極限 ($N_s \to \infty$ )の下では,各電子数や二重占有数 $D^*$ もマクロな数となるため,分母の $+1$ は無視して近似できる ($D^* + 1 \simeq D^*$ ).
+したがって,比を1とおいた条件式は次のように表される.
+\begin{equation}
+\begin{split}
+    1 &= g^2 \ov{\kako{N_{\ua} - D^*}\kako{N_{\da} - D^*}}{D^* \kako{N_s - N_{\ua} - N_{\da} + D^*}} \\[1ex]
+    g^2 &= \ov{D^* \kako{N_s - N_{\ua} - N_{\da} + D^*}}{\kako{N_{\ua} - D^*}\kako{N_{\da} - D^*}}.
+\end{split}
+\label{eq-g^2}
+\end{equation}
+
+最後に,各変数を全サイト数 $N_s$ で割ってサイトあたりの密度 ($d^* = D^*/N_s$,$n_{\ua} = N_{\ua}/N_s$,$n_{\da} = N_{\da}/N_s$ )で書き換える.
+右辺の分母と分子をそれぞれ $N_s^2$ で割ることで
+\begin{equation}
+    g^2 = \ov{d^* \kako{1 - n_{\ua} - n_{\da} + d^*}}{\kako{n_{\ua} - d^*}\kako{n_{\da} - d^*}}.
+\end{equation}
+
+同様の計算法を式(\ref{eq:var_energy})の分子にも適用する. まず, $\langle \Psi_G | \sum_{i,j} t_{ij} c_{i\uparrow}^\dagger c_{j\uparrow} | \Psi_G \rangle$ の運動エネルギー項を考える. 
+スピン $\uparrow$ を持つ電子が $j$ サイトから $i$ サイトへ跳び移る場合, ホッピング後の状態には必ず $i$ サイトに $\uparrow$ スピンが存在し, ホッピング前の状態には必ず $j$ サイトに $\uparrow$ スピンが存在する. この性質を用いると, サイト $i, j$ における Gutzwiller 因子は $n_{i\uparrow}=1, n_{j\uparrow}=1$ と置き換えることができ, 以下の形に変形できる
+\begin{equation}
+    \langle \Psi_G | c_{i\uparrow}^\dagger c_{j\uparrow} | \Psi_G \rangle = 
+    \langle \Phi_F | c_{i\uparrow}^\dagger c_{j\uparrow} (\bar{n}_{i\downarrow} + g n_{i\downarrow})(\bar{n}_{j\downarrow} + g n_{j\downarrow})\prod_{l \neq i,j} [1 - (1-g)n_{l\uparrow}n_{l\downarrow}]^2 | \Phi_F \rangle .
+    \label{eq:hopping_Gutzwiller}
+\end{equation}
+ここで, $\bar{n}_{i\sigma} = 1 - n_{i\sigma} = c_{i\sigma} c_{i\sigma}^\dagger$ は空サイトを示す演算子である. 
+式(\ref{eq:hopping_Gutzwiller})のカッコを展開すると, 4つの項が生じる. 
+二重占有数 $D$ が変化しない跳び移りが2つ, 跳び移りの前後で $D$ の数が増減する過程が2つである. 本来 $U \neq 0$ であればこれらは異なる確率で生じるが, GAではこうした局所配置依存性を無視し, 独立な確率の積で置き換える近似を行う. 
+
+各過程について, $i, j$ の2サイトを除外した残り $N_s - 2$ サイト上にある電子配列の組み合わせを数え上げる. このとき, 1つの $\uparrow$ スピンが跳び移るために配置が固定されるため, 残りの $\uparrow$ 電子数は $N_\uparrow - 1$ となる. 
+以上の近似と組み合わせの数 (式\ref{eq:ND} )および確率 (式\ref{eq:prob} ))を用いることで, 運動エネルギーの期待値は次のように求まる.
+\begin{equation}
+\begin{split}
+    \langle \Psi_G | \sum_{i,j} t_{ij} c_{i\uparrow}^\dagger c_{j\uparrow} | \Psi_G \rangle 
+    &\simeq \sum_D g^{2D} \Big[ N_D(N_s-2, N_\uparrow-1, N_\downarrow)+ g^2 N_D(N_s-2, N_\uparrow-1, N_\downarrow-2)\\
+    &\qquad\qquad + 2g N_D(N_s-2, N_\uparrow-1, N_\downarrow-1)\Big] \\
+    &\quad \times P(N_s-2, N_\uparrow-1)P(N_s, N_\downarrow)\bar{\epsilon}_\uparrow .
+\end{split}
+\label{eq:kin_energy_expectation}
+\end{equation}
+
+ここで
+\begin{equation}
+    \bar{\epsilon}_\sigma \equiv - \sum_{i,j} \frac{t_{ij}}{N_s} \langle \Phi_F | c_{i\sigma}^\dagger c_{j\sigma} | \Phi_F \rangle 
+    \label{eq:free_energy}
+\end{equation}
+としている.
+
+また, 式(\ref{eq:var_energy})の同一サイト斥力 (相互作用 )相関の項についても同様に計算を行う. $n_{i\uparrow}n_{i\downarrow}$ が作用するサイト $i$ は確実に二重占有となるため, 因子から $g^2$ が生じ, 残り $N_s - 1$ サイトの組み合わせを考えればよい
+\begin{equation}
+\begin{split}
+    \langle \Psi_G | U \sum_i n_{i\uparrow} n_{i\downarrow} | \Psi_G \rangle 
+    &= U g^2 \sum_i \langle \Phi_F | n_{i\uparrow} n_{i\downarrow} \prod_{l \neq i} [1 - (1-g)n_{l\uparrow}n_{l\downarrow}]^2 | \Phi_F \rangle \\
+    \simeq N_s U \sum_D g^{2D+2} N_D&(N_s-1, N_\uparrow-1, N_\downarrow-1)P(N_s, N_\uparrow)P(N_s, N_\downarrow).
+\end{split}
+\label{eq:int_energy_expectation}
+\end{equation}
+
+式(\ref{eq:kin_energy_expectation})と式(\ref{eq:int_energy_expectation})を, 規格化因子 (全確率 )である式(1.13)で割ることで, 各エネルギーの期待値が得られる. 
+
+ここでは熱力学極限の下で, 和の中で最大となる $D^*$ の項のみを評価する. 
+相互作用エネルギーの期待値は, 組み合わせの数の比をとり $d^* = D^*/N_s$ を用いると, 次のように求まる.
+\begin{equation}
+    \frac{\langle \Psi_G | U \sum_i n_{i\uparrow} n_{i\downarrow} | \Psi_G \rangle}{N_s \langle \Psi_G | \Psi_G \rangle} 
+    \simeq U \frac{g^{2D^*+2} N_{D^*}(N_s-1, N_\uparrow-1, N_\downarrow-1)}{g^{2D^*} N_{D^*}(N_s, N_\uparrow, N_\downarrow)} 
+    = U d^* .
+    \label{eq:int_energy_final}
+\end{equation}
+
+一方, 運動エネルギーの期待値についても同様に比を計算し, 式\ref{eq-g^2}用いて変数 $g$ を消去すると, 次の形に整理される
+\begin{equation}
+    \frac{\langle \Psi_G | \sum_{i,j} t_{ij} c_{i\uparrow}^\dagger c_{j\uparrow} | \Psi_G \rangle}{N_s \langle \Psi_G | \Psi_G \rangle} 
+    \simeq \frac{\left[ \sqrt{(n_\uparrow - d^*)(1 - n_\uparrow - n_\downarrow + d^*)} + \sqrt{(n_\downarrow - d^*)d^*} \right]^2}{n_\uparrow(1 - n_\uparrow)} \bar{\epsilon}_\uparrow .
+    \label{eq:kin_energy_final}
+\end{equation}
+ここで, $\bar{\epsilon}_\sigma$ は式(\ref{eq:free_energy})で定義した非相関時の自由電子の平均運動エネルギーである.
+
+以降, $d^*$ を単に $d$ と表記する. 
+式(\ref{eq:kin_energy_final})の係数部分は, 電子相関によってホッピング項を減少させる「準粒子繰り込み因子」$\gamma_\sigma$ として定義される.
+\begin{equation}
+    \gamma_\sigma = \frac{\left[ \sqrt{(n_\sigma - d)(1 - n_\sigma - n_{-\sigma} + d)} + \sqrt{(n_{-\sigma} - d)d} \right]^2}{n_\sigma(1 - n_\sigma)} \le 1 .
+    \label{eq:gamma_factor}
+\end{equation}
+これらを用いると, GAによるサイトあたりの変分エネルギー $E_{GA} / N_s$ は次のようにシンプルな形で記述できる.
+\begin{equation}
+    \frac{E_{GA}}{N_s} = \sum_\sigma \gamma_\sigma \bar{\epsilon}_\sigma + U d .
+    \label{eq:E_GA}
+\end{equation}
+
+\subsubsection{Brinkman-Rice 転移}
+Brinkman と Rice は, この GA の結果をハーフフィリング ($n_\uparrow = n_\downarrow = 1/2$, すなわち $n = 1$ )の場合に適用し, モット絶縁体への転移 (Brinkman-Rice 転移 )を見事に記述した. 
+$n_\sigma = 1/2$ を式(\ref{eq:gamma_factor})および式\ref{eq-g^2}に代入すると, 因子 $\gamma$ と変分パラメータ $g$ は $d$ のみの関数として次のように求まる.
+\begin{equation}
+    \gamma \equiv \gamma_\uparrow = \gamma_\downarrow = \frac{\left[ \sqrt{(1/2 - d)d} + \sqrt{(1/2 - d)d} \right]^2}{1/4} = 8d(1 - 2d)
+    \label{eq:gamma_half}
+\end{equation}
+\begin{equation}
+    g^2 = \frac{d \cdot d}{(1/2 - d)^2} \quad \Rightarrow \quad g = \frac{2d}{1 - 2d} .
+    \label{eq:g_half}
+\end{equation}
+ここで, 自由電子の運動エネルギーの和を $\sum_\sigma \bar{\epsilon}_\sigma = -|\bar{\epsilon}_0|$ とおくと, 式(\ref{eq:E_GA})の全エネルギーは以下のようになる.
+\begin{equation}
+    \frac{E_{GA}}{N_s} = -8d(1 - 2d)|\bar{\epsilon}_0| + Ud .
+    \label{eq:E_GA_half}
+\end{equation}
+基底状態のエネルギーを求めるため, これを $d$ について微分し, $\partial (E_{GA}/N_s)/ \partial d = 0$ を課して最適化を行う.
+\begin{equation}
+    -8|\bar{\epsilon}_0| + 32d|\bar{\epsilon}_0| + U = 0 \quad \Rightarrow \quad d = \frac{1}{4} \left( 1 - \frac{U}{8|\bar{\epsilon}_0|} \right).
+    \label{eq:d_optimization}
+\end{equation}
+この式から, クーロン斥力 $U$ がある臨界値 $U_c^{BR} \equiv 8|\bar{\epsilon}_0|$ に達すると, 二重占有密度が $d = 0$ となり, 電子が各サイトに完全に局在するモット絶縁体状態が実現することがわかる. この $U_c^{BR}$ を用いて $d$, $\gamma$, および最小化されたエネルギー $E_{GA}/N_s$ を書き直すと, 以下のようになる.
+\begin{equation}
+    d = \frac{1}{4} \left( 1 - \frac{U}{U_c^{BR}} \right)
+    \label{eq:d_final}
+\end{equation}
+\begin{equation}
+    \gamma = 1 - \left( \frac{U}{U_c^{BR}} \right)^2 
+    \label{eq:gamma_final}
+\end{equation}
+\begin{equation}
+    \frac{E_{GA}}{N_s} = -|\bar{\epsilon}_0| \left[ 1 - \frac{U}{U_c^{BR}} \right]^2 .
+    \label{eq:E_GA_final}
+\end{equation}
+このように, GAを用いることで, 相互作用の増大に伴いホッピングの確率が減少し ($\gamma \to 0$ ), 最終的に金属から絶縁体への相転移が起きる様子が解析的に示された.
+
+\section{本研究の目的}
+
+強相関電子系の理論的研究において, 動的平均場理論 (DMFT)は無限次元極限で厳密となる強力な手法であり, モット絶縁体転移などの複雑な物理現象の解明に多大な貢献をしてきた. 
+
+しかし, DMFTは有効不純物問題の求解 (不純物ソルバー )にかかる計算コストが非常に高く, 複雑な多軌道系や大規模な格子系への適用には実用上の限界が存在する. 
+
+一方, 前節までで定式化を追った Gutzwiller近似 (GA)アプローチは, 計算コストが圧倒的に低いという強力な利点を持つ. 
+
+しかし従来のGAは, 参照する単一粒子波動関数を物理的なヒルベルト空間内に直接構築し, その内部だけで局所的な重みを調整するため, 変分空間の表現力に制限があり, 精度面での妥協を余儀なくされていた. 
+
+そこでDMFTよりも計算コストが軽く, かつGAよりも精度の高い次世代の計算手法として, ghost Gutzwiller近似 (gGA)に着目する.
+
+gGAの最大の特長は, 従来のGAの枠組みに「ゴースト (ghost )」と呼ばれる補助的なフェルミオン自由度を導入する点にある. 
+
+ゴースト自由度を含む仮想的な補助ヒルベルト空間 (Auxiliary space )に参照状態を構築し, そこから現実の物理空間へのマッピングを行うことで, 変分空間を体系的かつ柔軟に拡張する. 
+
+この拡張により, gGAはGAの簡便な計算アルゴリズムを維持したまま, DMFTに匹敵する高精度な相関効果の記述が可能となることが示唆されている. 
+
+本論文の目的は, このgGAの理論的枠組みをハバードモデルに適用し, 従来のGAやDMFTの結果と比較することで, gGAがモット転移をどのように記述するかを明らかにすることである.
+\section{本論文の構成}
+
+本論文の構成は以下の通りである.
+
+第1章では,本研究の背景と関連研究について概観し,本研究の目的を述べる.
+
+第2章では,本研究の理論的基礎となるハバードモデルやGutzwiller近似の定式化について解説する.
+
+第3章では,数値計算の対象となる格子モデルやパラメータなどの問題設定について記述する.
+
+第4章では,ghost Gutzwiller近似を用いた具体的な最適化アルゴリズムと計算条件について説明する.
+
+第5章では,無限次元Bethe格子および2次元正方格子における計算結果を示し,動的平均場理論の厳密解との比較を通して考察を行う.
+
+第6章では,本研究で得られた知見を総括し,今後の展望についてまとめる.
+

@@ -1,0 +1,546 @@
+% Chapter 4 placeholder
+\section{局所換算密度行列を用いた再定式化}
+変分問題に現れる,$\Ket{\Psi_{0}}$に関する局所的なオブザーバブルな全ての期待値を計算するために$i$番目の補助空間部分系$i$の局所換算密度行列を導入する必要がある.
+
+局所換算密度行列は次で与えられる.
+\begin{equation}
+    \hat{P}^{0}_{i}\propto \exp{\kako{-\sum_{a,b=1}^{B\nu_{i}}\dkako{\log \kako{\ov{1-\Delta_{i}^{T}}{\Delta_{i}^{T}}}}_{ab}f\dgr_{ia}f_{ib}}}.
+\end{equation}
+ここで
+\begin{equation}
+    \dkako{\Delta_{i}}_{ab}=\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}
+\end{equation}
+で表される$B\nu_{i}\cross B\nu_{i}$の行列である.
+この定義と,Gutzwiller射影演算子の行列表現を利用すると
+\begin{align}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}\Ket{\Psi_{0}}=&\Tr \dkako{P_{i}^{0}\Lambda\dgr_{i}\Lambda_{i}}  \label{10-1} \\ 
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}=&\Tr \dkako{P_{i}^{0}\Lambda\dgr_{i}\Lambda_{i}\tilde{F}\dgr_{ia}\tilde{F}_{ib}}  \label{10-2} \\ 
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\hP_{i}\Ket{\Psi_{0}}=&\Tr \dkako{P_{i}^{0}\Lambda\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha}, F_{i\alpha}\Lambda_{i}}}   \label{10-3} \\ 
+    \Bra{\Psi_{0}}\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}f_{ia}\Ket{\Psi_{0}}=&\Tr \dkako{P_{i}^{0}\Lambda\dgr_{i}F\dgr_{i\alpha}\Lambda_{i}\tilde{F}_{ia}}  \label{10-4}
+\end{align}
+が得られる.
+ここで$\Tr$は$i$番目の補助空間部分系の$2^{B\nu_{i}}$次元の多体フォック空間内に制限されたトレース演算子を表す.
+
+行列$F_{i\alpha}$と$\tilde{F}_{ia}$はそれぞれ局所換算密度行列,物理的な消滅演算子,補助的な消滅演算子をそれら自身のフォック基底で表現したものである.
+
+定義は次で与えられる.
+\begin{align}
+    &\dkako{F_{i\alpha}}_{\Gamma\Gamma'}=\Bra{\Gamma,i}c_{i\alpha}\Ket{\Gamma',i}\quad\kako{\Gamma,\Gamma'\in \ckako{0,\cdots,2^{\nu_{i}}-1}}\\
+    &\dkako{\tilde{F_{ia}}}_{nn'}=\Bra{n,i}f_{ia}\Ket{n'i'}\quad \kako{n,n'\in \ckako{0,\cdots,2^{B\nu_{i}}-1}}.
+\end{align}
+
+ひとつ目の式を導出するが他も同様にして得られる.
+\begin{equation}
+\begin{split}
+    \hP\dgr_{i}\hP_{i}=&\kako{\sum_{\Gamma', n'}\dkako{\Lambda_{i}}_{n'\Gamma'}\ket{n'}\bra{\Gamma'}}\kako{\sum_{\Gamma,n}\dkako{\Lambda_{i}}_{\Gamma n}\ket{\Gamma}\bra{n}}\\
+    =&\sum_{\Gamma,n,\Gamma',n'}\dkako{\Lambda_{i}\dgr}_{n'\Gamma'}\dkako{\Lambda_{i}}_{\Gamma n} \ket{n'}\braket{\Gamma'}{\Gamma} \bra{n}\\
+    =&\sum_{n,n'}\kako{\sum_{\Gamma}\dkako{\Lambda\dgr_{i}}_{n'\Gamma}\dkako{\Lambda_{i}}_{\Gamma n}}\ket{n'}\bra{n}\\
+    =&\sum_{n,n'}\dkako{\Lambda\dgr_{i}\Lambda_{i}}_{nn'}\ket{n'}\bra{n}.
+\end{split}
+\end{equation}
+これを用いて
+\begin{equation}
+\begin{split}
+    \bra{\Psi_{0}}\hP_{i}\dgr \hP_{i}\ket{\Psi_{0}}=&\text{Tr}\dkako{\hP\dgr_{i}\hP_{i}}\\
+    =&\sum_{n,n'}\dkako{\Lambda_{i}\dgr\Lambda_{i}}_{n'n}\text{Tr}\dkako{\hat{P}_{i}^{0}\ket{n'}\bra{n}}\\
+    =&\sum_{n,n'}\dkako{\Lambda_{i}\dgr\Lambda_{i}}_{n'n}\sum_{m}\bra{m}\hat{P}^{0}_{i}\ket{n'}\bra{n}\ket{m} \\
+    =&\sum_{n,n'}\dkako{\Lambda_{i}\dgr\Lambda_{i}}_{n'n}\bra{n}\hat{P}^{0}_{i}\ket{n'}\\
+    =&\sum_{n,n'}\dkako{\Lambda_{i}\dgr\Lambda_{i}}_{n'n}\dkako{P^{0}_{i}}_{nn'}\\
+    =&\sum_{n}\dkako{P^{0}_{i}\Lambda_{i}\dgr\Lambda_{i}}_{nn}\\
+    =&\ \text{Tr}\dkako{P^{0}_{i}\Lambda_{i}\dgr\Lambda_{i}}.\\
+\end{split}
+\end{equation}
+
+一方,$\hat{P}^{0}_{i}$の行列表現は要素を$\dkako{P^{0}_{i}}_{nn'}=\Bra{n,i}\hat{\rho}^{0}_{i}\Ket{n',i}$とすると,
+\begin{equation}
+    P^{0}_{i}\propto \exp{\kako{-\sum_{a,b=1}^{B\nu_{i}}\dkako{\log{\kako{\ov{1-\Delta^{T}_{i}}{\Delta^{T}_{i}}}}}_{ab}\tilde{F}\dgr_{ia}\tilde{F}_{ib}}}.
+\end{equation}
+この寄与を合計し,局所項を換算密度行列の形で表現すると変分エネルギー$\ve$は
+\begin{equation}
+    \ve=\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR_{i}t_{ij}\hR\dgr_{j}}_{ab}\Bra{\Psi_{0}}f\dgr_{ib}f_{ia}\Ket{\Psi_{0}}+\sum_{i=1}^{\hN}\Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha},F_{i\alpha}}\Lambda_{i}}.
+\end{equation}
+ここで,行列$\hR_{i}$は以下によって決定される.
+\begin{equation}
+    \Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}F\dgr_{i\alpha}\Lambda_{i}\tilde{F}_{ia}}=\sum_{b=1}^{B\nu_{i}}\dkako{\hR_{i}}_{ba}\Bra{\Psi_{0}}f\dgr_{ib}f_{ia}\Ket{\Psi_{0}}=\sum_{b=1}^{B\nu_{i}}\dkako{\hR_{i}}_{b\alpha}\dkako{\Delta_{i}}_{ba}.  \label{R-i-1}
+\end{equation}
+このエネルギーは以下の換算密度行列の形で表されたGutzwiller拘束条件を満たすという条件のもとで最小化されなければならない.
+\begin{align}
+    \Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}\Lambda_{i}}=&\braket{\Psi_{0}}=1. \label{10-5}\\
+    \Tr \dkako{P^{0}_{i}A\dgr_{i}A_{i}\tilde{F}\dgr_{ia}\tilde{F}_{ib}}=&\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}=\dkako{\Delta_{i}}_{ab}\quad \kako{\forall a,b=1,\cdots ,B\nu_{i}}. \label{10-6}
+\end{align}
+
+\section{slave-boson振幅を用いた再定式化}
+ここでは,gGAの観点から「slave-boson振幅」について掘り下げる.回転不変slave-boson法 (RISB)ではslave-boson振幅は異なる視点から現れる.そこでは各系のフラグメント内の局所モードを表現するために補助的なボゾンが導入される.この代替的な視点に関する注目するべき点はgGAがgRISBの平均場近似とみなせることであり,同様にGAもRISBと類似の関係にある.
+そのため,RISB/gRISBの定式化は厳密解を得るために量子揺らぎの補正を系統的に組み込む実用的な実装を考察する道を開く.
+\subsection{slave-boson振幅}
+全ての主要な局所量をslave-boson振幅の行列を用いて代替的な方法で書き換えることができる.これは技術的な目的だけでなく,RISBとの形式的な関連を確立するためにも有用である.
+slave-boson振幅の行列$\phi_{i}$を以下で導入する.
+\begin{equation}
+  \phi_{i}=\Lambda_{i}\sqrt{P^{0}_{i}}=\Lambda_{i}\dkako{P^{0}_{i}}^{\ov{1}{2}}.
+\end{equation}
+これを\eqref{10-1}から\eqref{10-4}に代入すると以下が得られる.
+\begin{align}
+    \Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}\Lambda_{i}}=&\Tr \dkako{\phi\dgr_{i}\phi_{i}}  \label{11-1}\\
+    \Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}\Lambda_{i}\tilde{F}\dgr_{ia}\tilde{F}_{ib}}=&\Tr \dkako{\phi\dgr_{i}\phi_{i}\dkako{P^{0}_{i}}^{-\ov{1}{2}}\tilde{F}\dgr_{ia}\tilde{F}_{ib}\dkako{P^{0}_{i}}^{\ov{1}{2}}} \label{11-2} \\
+    \Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha}, F_{i\alpha}}\Lambda_{i}}=&\Tr \dkako{\phi_{i}\phi\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha},F_{i\alpha}}} \label{11-3} \\
+    \Tr \dkako{P^{0}_{i}\Lambda\dgr_{i}F\dgr_{i\alpha}\Lambda_{i}\tilde{F}_{ia}}=&\Tr \dkako{\phi\dgr_{i}F\dgr_{i\alpha}\phi_{i}\dkako{P^{0}_{i}}^{-\ov{1}{2}}\tilde{F}_{ia}\dkako{P^{0}_{i}}^{\ov{1}{2}}}. \label{11-4}
+\end{align}
+ここで,ユニタリ演算子を書き換えて
+\begin{equation}
+\begin{split}
+    \dkako{P^{0}_{i}}^{-\ov{1}{2}}\tilde{F}\dgr_{ia}\dkako{P^{0}_{i}}^{\ov{1}{2}}
+    =&e^{\ov{1}{2}\sum_{a,b=1}^{B\nu_{i}}\dkako{\log{\kako{\ov{\bm{1}-\Delta^{T}_{i}}{\Delta^{T}_{i}}}}}_{a'b'}\tilde{F}\dgr_{ia}\tilde{F}_{ib'}}\tilde{F}\dgr_{ia}e^{-\ov{1}{2}\sum_{a'',b''=1}^{B\nu_{i}}\dkako{\log{\kako{\ov{\bm{1}-\Delta^{T}_{i}}{\Delta^{T}_{i}}}}}_{a''b''}\tilde{F}\dgr_{ia''}\tilde{F}_{ib''}}\\
+    =&\sum_{a'=1}^{B\nu_{i}}\dkako{e^{\ov{1}{2}\log \kako{\ov{\bm{1}-\Delta^{T}_{i}}{\Delta^{T}_{i}}}}}_{a'a}\tilde{F}\dgr_{ia'}\\
+    =&\sum_{a'=1}^{B\nu_{i}}\dkako{\ov{\bm{1}-\Delta^{T}_{i}}{\Delta^{T}_{i}}}_{a'a}^{\ov{1}{2}}\tilde{F}\dgr_{ia'}\\
+    =&\sum_{a'=1}^{B\nu_{i}}\dkako{\ov{\bm{1}-\Delta_{i}}{\Delta_{i}}}_{aa'}^{\ov{1}{2}}\tilde{F}\dgr_{ia'}. \label{11-5} 
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+    \dkako{P^{0}_{i}}^{-\ov{1}{2}}\tilde{F}_{ia}\dkako{P^{0}_{i}}^{\ov{1}{2}}=&\sum_{a'=1}^{B\nu_{i}}\dkako{e^{-\ov{1}{2}\log \kako{\ov{1-\Delta^{T}_{i}}{\Delta^{T}_{i}}}}}_{aa'}\tilde{F}_{ia'}\\
+    =&\sum_{a'=1}^{B\nu_{i}}\dkako{\ov{\Delta^{T}_{i}}{1-\Delta^{T}_{i}}}_{aa'}^{\ov{1}{2}}\tilde{F}_{ia'}\\
+    =&\sum_{a'=1}^{B\nu_{i}}\dkako{\ov{\Delta_{i}}{1-\Delta_{i}}}_{a'a}^{\ov{1}{2}}\tilde{F}_{ia'}.  \label{11-6} \\
+\end{split}
+\end{equation}
+ここで,\eqref{11-1}を\eqref{10-5}に,\eqref{11-5}を\eqref{10-6}に代入すると
+\begin{align}
+    \Tr \dkako{\phi\dgr_{i}\phi_{i}}=&\braket{\Psi_{0}}=1. \label{11-7}\\
+    \Tr \dkako{\phi\dgr_{i}\phi_{i}\tilde{F}\dgr_{ia}\tilde{F}_{ib}}=&\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}=\dkako{\Delta_{i}}_{ab}\quad \kako{\forall a,b=1\cdots, B\nu_{i}}.\label{11-8}
+\end{align}
+\eqref{11-6}を\eqref{R-i-1}に代入すると
+\begin{equation}
+    \Tr \dkako{\phi\dgr_{i}F\dgr_{i\alpha}\phi_{i}\tilde{F}_{ia}}=\sum_{c=1}^{B\nu_{i}}\dkako{\hR_{i}}_{c\alpha}\dkako{\Delta_{i}\kako{1-\Delta_{i}}}_{ac}^{\ov{1}{2}}. \label{R-11-1}
+\end{equation}
+この式は$\Delta_{i},\kako{1-\Delta_{i}}$のどちらも縮退していない限り,常に逆行列を求めることができる.
+\subsection{slave-boson振幅による変分問題}
+上での寄与を合計し,局所項をSlave-boson振幅で表現すると変分エネルギーは次で与えられる.
+\begin{equation}
+    \ve=\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR_{i}t_{ij}\hR\dgr_{j}}_{ab}\Bra{\Psi_{0}}f\dgr_{ia}f_{jb}\Ket{\Psi_{0}}+\sum_{i=1}^{\hN}\Tr \dkako{\phi_{i}\phi\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha},F_{i\alpha}}}.
+\end{equation}
+ここで,行列$R_{i}$は\eqref{R-11-1}で決定される.このエネルギーは,slave-boson振幅によるGutzwiller拘束条件のもとで最小化されなければならない.
+
+\section{埋め込み状態を用いた再定式化}
+ここでは「埋め込み状態」を用いて主要な局所量を表現することで,さらに一歩進める.
+
+これによって,エネルギー最適化問題を有限のバスを持つ補助的な「不純物模型」の基底状態を再帰的に計算する問題へと再定式化することが可能になる.
+
+さらに,gGAをDMETのような量子埋め込み理論と結びつける上で重要な役割を果たし,これらのフレームワークのより統一的な理解を可能にする.
+
+\subsection{埋め込み状態(embedding states)}
+埋め込み状態は,補助的なフォック空間に属するベクトルでありSlave-boson振幅$\phi_{i}$をフェルミオン的な不純物ハミルトニアンにマッピングする役割を果たす.
+
+埋め込み状態は$\Ket{\Phi_{i}}$で表され,次のように定義される.
+\begin{equation}
+    \Ket{\Phi_{i}}=\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}N(n)\kako{N(n)-1}}\dkako{\phi_{i}}_{\Gamma_{n}}\Ket{\Gamma;i}\otimes U_{PH}\Ket{n;i}.
+\end{equation}
+ここで,$\ket{\Gamma;i},\Ket{n;i}$は補助フェルミオンモードによって生成されるフォック状態である.
+\begin{align}
+    \Ket{\Gamma;i}=& \dkako{c\dgr_{i1}}^{q_{1}\kako{\Gamma}}\cdots \dkako{c\dgr_{i\nu_{i}}}^{q_{\nu_{i}}\kako{\Gamma}}\Ket{0}\\
+    \Ket{n;i}=& \dkako{b\dgr_{i1}}^{q_{1}\kako{n}}\cdots \dkako{b\dgr_{iB\nu_{i}}}^{q_{B\nu_{i}}\kako{n}}\Ket{0}.
+\end{align}
+最初に導入した記法と一貫して$q_{a}(n)$はフォック状態$\Ket{n,i}$の$a$番目の占有数,すなわち整数$n$の2進数表現における$i$番目の桁を表し,
+\begin{equation}
+    N(n)=\sum_{a=1}^{B\nu_{i}}q_{a}(n)
+\end{equation}
+は各状態$\Ket{n,i}$におけるフェルミオンの総数を表す.
+
+さらに,$U_{PH}$は$\Ket{n;i}$状態に作用する粒子-正孔変換を表し,以下の条件で定義される.
+\begin{align}
+    U\dgr_{PH}b\dgr_{ia}U_{PH}=&b_{ia}\\
+    U\dgr_{PH}b_{ia}U_{PH}=&b\dgr_{ia}\\
+    U\dgr_{PH}c\dgr_{ia}U_{PH}=&c\dgr_{ia}\\
+    U\dgr_{PH}c_{ia}U_{PH}=&c_{ia}\\
+    U_{PH}\Ket{0}=\prod_{a=1}^{B\nu_{i}}b\dgr_{ia}\Ket{0}=&\Ket{2^{B\nu_{i}}-1;i}.
+\end{align}
+
+・基底状態$\Ket{\Gamma;i}\otimes U_{PH}\ket{n;i}$は直交しており,つまり線型独立である.この直交性はSlave-boson振幅$\dkako{\phi_{i}}_{\Gamma_{n}}$がこの補助フォック空間における展開係数を一意に表現することを意味する.結果としてフォック空間の状態$\Ket{\Phi_{i}}$とSlave-boson振幅に表現された変分パラメータとの間に一対一の対応が確立される.
+・全ての埋め込み状態の集合はフォック空間を形成する.これは,$c\dgr_{i\alpha}(\alpha\in \ckako{1,\cdots,\nu_{i}})$のフェルミオン自由度によって生成される部分系と,$b\dgr_{ia}$のフェルミオン自由度によって生成される部分系からなる複合系と解釈できる.
+
+\subsubsection{半充填された埋め込み状態}
+ノーマル変分状態への制限で行った
+\begin{equation}
+    N(n)-N(\Gamma)=m_{i}=\ov{\kako{B-1}\nu_{i}}{2}
+\end{equation}
+のもとで,埋め込み状態$\ket{\Phi_{i}}$は合計で$\ov{\kako{B+1}\nu_{i}}{2}$個のフェルミオンを持つ.これは,それらが半充填 (half-filled)であること,すなわち可能な最大フェルミオン数(モードの半数)を含んでいることを意味する.
+
+証明
+
+全数演算子$\hat{N}_{tot}$が埋め込み状態に作用することを考える.
+
+\begin{equation}
+\begin{split}
+  \hat{N}_{tot}\Ket{\Phi_{i}}=&\kako{\sum_{a=1}^{B\nu_{i}}b\dgr_{ia}b_{ia}+\sum_{\alpha=1}^{\nu_{i}}c\dgr_{i\alpha}c_{i\alpha}}\Ket{\Phi_{i}}\\
+  =&\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}N\kako{n}\kako{N\kako{n}-1}}\dkako{\phi_{i}}_{\Gamma n}\kako{N\kako{\Gamma}+B\nu_{i}-N\kako{n}}\Ket{\Gamma;i}\otimes U_{PH}\Ket{n;i}\\
+  =&\kako{-m_{i}+B\nu_{i}}\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}N\kako{n}\kako{N\kako{n}-1}}\dkako{\phi_{i}}_{\Gamma n}\Ket{\Gamma;i}\otimes U_{PH}\Ket{n;i}\\
+  =&\kako{\ov{B+1}{2}\nu_{i}}\Ket{\Phi_{i}}.
+\end{split}
+\end{equation}
+
+よって,埋め込み状態$\Ket{\Phi_{i}}$が合計で$\ov{\kako{B+1}\nu_{i}}{2}$個の電子を持つ.つまり半充填であることが示せた.
+・この結論の重要な点は,元々はgGA変分状態が明確に定義されたフェルミオン数を持つことを保証するために行われた変分的な仮定を,埋め込み状態が半充填であるという条件に再定式化できる点にある.
+
+次で見るように,導入したマッピングは計算上有利であるだけでなくgGAを密度行列埋め込み理論や動的平均場理論といった量子埋め込みフレームワークの文脈に位置付ける上で重要な役割を果たし,それによって統一的な視点を促進する.
+
+\subsection{埋め込み状態における局所演算子の期待値}
+ここでは,もともとslave-boson振幅を用いて表現されていた局所演算子の期待値を研究し,埋め込みを用いた等価な表現を確立することを目指す.
+
+\subsubsection{$\Tr \dkako{\phi\dgr_{i}\phi_{i}}$の埋め込み状態による表現}
+\begin{equation}
+\begin{split}
+    \braket{\Phi_{i}}=\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}&e^{\ov{i\pi}{2}\ckako{N(n')(N(n')-1)-N(n)(N(n)-1)}}\dkako{\phi_{i}}\sr_{\Gamma n}\dkako{\phi_{i}}_{\Gamma'n'}\\
+    &\cross \braket{\Gamma;i}{\Gamma';i}\Bra{n;i}U\dgr_{PH}U_{PH}\Ket{n';i}\\
+    =\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}&\dkako{\phi_{i}}\sr_{\Gamma n}\dkako{\phi_{i}}_{\Gamma{n}}\\
+    =\Tr \dkako{\phi_{i}\dgr\phi_{i}}.\quad 
+\end{split}
+\end{equation}
+
+$\braket{\Phi_{i}}$の式を埋め込み状態の定義に従って展開し,$\Gamma,n$の全てにわたる和を計算した.
+
+状態$\braket{\Gamma;i}{\Gamma';i}$と$\braket{n;i}{n';i}$の正規直交性を利用し,$\Gamma=\Gamma'$かつ$n=n'$となる項のみを残した.
+
+これらの項の和は,係数$\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma_{n}}$の積を含んでいた.
+
+この式は最終的に$\phi\dgr_{i}\phi_{i}$のトレースとして簡潔に書かれた.
+
+\subsubsection{$\Tr \dkako{\phi_{i}\phi\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha},F_{i\alpha}}}$の埋め込み状態による表現}
+
+\begin{equation}
+\begin{split}
+    \Bra{\Phi_{i}}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\Ket{\Phi_{i}}=&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}\dkako{N(n)\ckako{N(n)-1}-N(n')\ckako{N(n')-1}}}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\\
+    &\cross \Bra{\Gamma;i}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\Ket{\Gamma';i}\Bra{n;i}U\dgr_{PH}U_{PH}\Ket{n';i}\\
+    =&\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma_{n}}\Bra{\Gamma;i}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\Ket{\Gamma;i}\\
+    =&\Tr \dkako{\phi_{i}\phi\dgr_{i}\hat{H}^{i}_{loc}\dkako{F\dgr_{i\alpha},F_{i\alpha}}}.
+\end{split}
+\end{equation}
+
+局所ハミルトニアンの期待値は,最初の方程式と同様に埋め込み状態を用いて展開された.
+
+状態の正規直交性により式は$\phi_{i}\phi\dgr_{i}$と,$\Ket{\Gamma;i}$基底における局所ハミルトニアンの行列表現との積のトレースに単純化された.
+
+\subsubsection{$\Tr \dkako{\phi\dgr_{i}\phi_{i}\tilde{F}\dgr_{ia}\tilde{F}_{ib}}$の埋め込み状態による表現}
+
+\begin{equation}
+\begin{split}
+    \Bra{\Phi_{i}}b_{ib}b\dgr_{ia}\Ket{\Phi_{i}}=&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}\dkako{N(n)\ckako{N(n)-1}-N(n')\ckako{N(n')-1}}}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\\
+    &\cross \braket{\Gamma;i}{\Gamma';i}\Bra{n;i}U\dgr_{PH}b_{ib}b\dgr_{ia}U_{PH}\Ket{n';i}\\
+    =&\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma_{n}}\Bra{n;i}b\dgr_{ib}b_{ia}\Ket{n';i}\\
+    &\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma_{n}}\dkako{\tilde{F}\dgr_{ib}\tilde{F}_{ia}}_{nn'}\\
+    &\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma_{n}}\dkako{\tilde{F}\dgr_{ib}\tilde{F}_{ia}}_{n'n}\\
+    =&\Tr \dkako{\phi\dgr_{i}\phi_{i}\tilde{F}\dgr_{ia}\tilde{F_{ib}}}.
+\end{split}
+\end{equation}
+
+最初に項が展開され,粒子-正孔変換を行った.
+
+$\braket{\Gamma;i}{\Gamma';i}$の正規直交性により$\Gamma,\Gamma'$のわたる和をまとめることができた.
+
+次に演算子$b\dgr_{ib},b_{ia}$がそれらの行列表現を用いて表現された.
+
+さらに$\tilde{F}_{ib},\tilde{F}\dgr_{ia}$の行列要素が実数である性質を用いて式が単純化された.
+
+最終的に行列の積のトレースとしてコンパクトな表現が得られた.
+
+\subsubsection{$\Tr \dkako{\phi \dgr_{i}F\dgr_{i\alpha}\phi_{i}\tilde{F}_{ia}}$の埋め込み状態による表現}
+
+\begin{equation}
+\begin{split}
+    \Bra{\Phi_{i}}c\dgr_{i\alpha}b_{ia}\Ket{\Phi_{i}}=&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}\dkako{N(n)\ckako{N(n)-1}-N(n')\ckako{N(n')-1}}}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\\
+    &\cross \Bra{\Gamma;i}\Bra{n;i}U\dgr_{PH}c\dgr_{i\alpha}b_{ia}U_{PH}\Ket{\Gamma';i}\Ket{n';i}\\
+    =&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}e^{\ov{i\pi}{2}\dkako{N(n)\ckako{N(n)-1}-N(n')\ckako{N(n')-1}}}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\\
+    &\cross \Bra{\Gamma;i}\Bra{n;i}c\dgr_{i\alpha}b\dgr_{ia}\Ket{\Gamma';i}\Ket{n';i}\\
+    =&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}\kako{-1}^{n'}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\Bra{\Gamma;i}\Bra{n;i}c\dgr_{i\alpha}b\dgr_{ia}\Ket{\Gamma';i}\Ket{n';i}\\
+    =&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\Bra{\Gamma;i}c\dgr_{i\alpha}\Ket{\Gamma';i}\Bra{n;i}b\dgr_{ia}\Ket{n';i}\\
+    =&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\dkako{F\dgr_{i\alpha}}_{\Gamma\Gamma'}\dkako{\tilde{F}\dgr_{ia}}_{nn'}\\
+    =&\sum_{\Gamma,\Gamma'=0}^{2^{\nu_{i}}-1}\sum_{n,n'=0}^{2^{B\nu_{i}}-1}\dkako{\phi_{i}}\sr_{\Gamma_{n}}\dkako{\phi_{i}}_{\Gamma'n'}\dkako{F\dgr_{i\alpha}}_{\Gamma\Gamma'}\dkako{\tilde{F}\dgr_{ia}}_{n'n}\\
+    =&\Tr \dkako{\phi \dgr_{i}F\dgr_{i\alpha}\phi_{i}\tilde{F}_{ia}}.
+\end{split}
+\end{equation}
+
+ここでは最初に粒子-正孔変換を用い,次に$N(n')=N(n)+1$を用いて位相因子が単純化され,$\kako{-1}^{n'}$が得られた.
+
+その後,$\Bra{\Gamma;i}\Bra{n;i}c\dgr_{i\alpha }b\dgr_{ia}\Ket{\Gamma';i}\Ket{n';i}$を$c\dgr_{i\alpha}$と$b\dgr_{ia}$の行列表現で書き換えた.
+
+置換から生じた位相因子によってそれまでの$\kako{-1}^{n'}$を打ち消した.
+
+以前と同様に$\tilde{F}_{ia}$の要素が実数であることからそれを転置してエルミート共役を取ることができた.
+
+最後に和がひとつのトレース表現にまとめられた.
+
+\subsection{埋め込みによる変分状態}
+上で得られた表現を思い出すと,Gutzwiller拘束条件を,埋め込み状態を用いて次のように書き換える.
+\begin{align}
+    \braket{\Phi_{i}}=\braket{\Psi_{0}}=1.
+\end{align}
+\begin{equation}
+    \Bra{\Phi_{i}}b_{ib}b\dgr_{ia}\Ket{\Phi_{i}}=\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}=\dkako{\Delta_{i}}_{ab} \quad (\forall a,b=1,\cdots,B\nu_{i}).
+\end{equation}
+また行列$\hR_{i}$を次の方程式の解として表現できる.
+\begin{equation}
+    \Bra{\Phi_{i}}c\dgr_{i\alpha}b_{ia}\Ket{\Phi_{i}}=\sum_{a=1}^{B\nu_{i}}\dkako{\hR_{i}}_{c\alpha}\dkako{\Delta_{i}\kako{1-\Delta_{i}}}^{\ov{1}{2}}_{ac}.
+\end{equation}
+
+これらの埋め込み状態による表現を用いると変分エネルギーは次のようになる.
+\begin{equation}
+    \ve=\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR_{i}t_{ij}\hR\dgr_{j}}_{ab}\Bra{\Psi_{0}}f\dgr_{ia}f_{jb}\Ket{\Psi_{0}}+\sum_{i=1}^{\hN}\Bra{\Phi_{i}}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\Ket{\Phi_{i}}.
+\end{equation}
+この変分エネルギーは埋め込み状態に関するGutzwiller拘束条件のもとで,変分パラメータに対して最小化されなければならない.
+
+\section{gGAのラグランジュ形式}
+前のセクションではGutzwiller近似が埋め込み状態の観点からどのように定式化されるかを議論した.
+しかし$\Ket{\Phi_{i}}$の次元は$\nu_{i}$と$B$に対して指数関数的であり非線形であるため,これは複雑な最適化問題を引き起こす.
+これに取り組むため問題を$\Phi_{i}$に関する線形の固有値問題に再定式化する数学的な手法を用いる.
+これは,ラグランジュの未定乗数法に基づく定理によって容易になる.
+
+\subsection{gGAのラグランジュ関数}
+次のラグランジュ関数を作る.
+
+\begin{align}
+    \hL=&\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR _{i}t_{ij}\hR\dgr_{j}}_{ab}\bra{\Psi_{0}}f\dgr_{ia}f_{jb}\ket{\Psi_{0}}+\sum_{i=1}^{\hN}\Bra{\Phi_{i}}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\ket{\Phi_{i}} \notag \\
+    &+E\kako{1-\braket{\Psi_{0}}}+\sum_{i=1}^{\hN}E_{i}^{c}\kako{1-\braket{\Phi_{i}}} \notag \\
+    &+\sum_{i=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\ckako{\dkako{\Lambda_{i}}_{ab}\kako{\bra{\Psi_{0}}f\dgr_{ia}f_{ib}\ket{\Psi_{0}}-\dkako{\Delta_{i}}_{ab}}+\dkako{\Lambda^{c}_{i}}_{ab}\kako{\Bra{\Phi_{i}}b_{ib}b\dgr_{ia}\ket{\Phi_{i}}-\dkako{\Delta_{i}}_{ab}}} \notag \\
+    &+\sum_{i=1}^{\hN}\sum_{a=1}^{B\nu_{i}}\sum_{\alpha=1}^{\nu_{i}}\dkako{\hD_{i}}_{a\alpha}\kako{\Bra{\Phi_{i}}c\dgr_{i\alpha}b_{ia}\ket{\Phi_{i}}-\sum_{c=1}^{B{\nu_{i}}}\dkako{\hR_{i}}_{c\alpha}\dkako{\Delta_{i}\kako{1-\Delta_{i}}}_{ac}^{\ov{1}{2}}}+c.c. \notag \\
+    =&\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR_{i}t_{ij}\hR\dgr_{j}}_{ab}\bra{\Psi_{0}}f\dgr_{ia}f_{jb}\ket{\Psi_{0}}+\sum_{i=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\Lambda_{i}}_{ab}\kako{\bra{\Psi_{0}}f\dgr_{ia}f_{ib}\ket{\Psi_{0}}} \notag \\
+    &+E\kako{1-\braket{\Psi_{0}}} \notag \\
+    &+\sum_{i=1}^{\hN}\kako{\bra{\Phi_{i}}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\ket{\Phi_{i}}+\sum_{a=1}^{B\nu_{i}}\sum_{\alpha=1}^{\nu_{i}}\kako{\dkako{\hD_{i}}_{a\alpha}\bra{\Phi_{i}}c\dgr_{i\alpha}b_{ia}\ket{\Phi_{i}}+c.c.}+\sum_{a,b=1}^{B\nu_{i}}\dkako{\Lambda_{i}^{c}}\bra{\Phi_{i}}b_{ib}b\dgr_{ia}\ket{\Phi_{i}}} \notag \\
+    &+\sum_{i=1}^{\hN}E_{i}^{c}\kako{1-\braket{\Phi_{i}}} \notag \\
+    &-\sum_{i=1}^{\hN}\dkako{\sum_{a,b=1}^{B\nu_{i}}\kako{\dkako{\Lambda_{i}}_{ab}+\dkako{\Lambda_{i}^{c}}_{ab}}\dkako{\Delta_{i}}_{ab}+\sum_{c,a=1}^{B\nu_{i}}\sum_{\alpha=1}^{\nu_{i}}\kako{\dkako{\hD_{i}}_{a\alpha}\dkako{\hR_{i}}_{c\alpha}\dkako{\Delta_{i}\kako{1-\Delta_{i}}}_{ac}^{\ov{1}{2}}+c.c.}} \notag \\
+    =&\bra{\Phi_{0}}\hat{H}_{qp}\dkako{\hR,\Lambda}\ket{\Phi_{0}}+E\kako{1-\braket{\Psi_{0}}} \notag \\
+    &+\sum_{i=1}^{\hN}\dkako{\bra{\Phi_{i}}\hat{H}^{emb}_{i}\ket{\Phi_{i}}+\sum_{i=1}^{\hN}E_{i}^{c}\kako{1-\braket{\Phi_{i}}}} \notag \\
+    &-\sum_{i=1}^{\hN}\Biggl[ \sum_{a,b=1}^{B\nu_{i}}\kako{\dkako{\Lambda_{i}}_{ab}+\dkako{\Lambda_{i}^{c}}_{ab}}\dkako{\Delta_{i}}_{ab} \notag \\
+    &\qquad\qquad\quad +\sum_{c,a=1}^{B\nu_{i}}\sum_{\alpha=1}^{\nu_{i}}\kako{\dkako{\hD_{i}}_{a\alpha}\dkako{\hR_{i}}_{c\alpha}\dkako{\Delta_{i}\kako{1-\Delta_{i}}}_{ac}^{\ov{1}{2}}+c.c.} \Biggr].
+\end{align}
+
+
+ここで$\hN$は単位胞の総数である.
+ラグランジュ関数はいくつかのラグランジュ乗数と変数を導入する.
+具体的には
+
+・$E$:規格化条件$\braket{\Psi_{0}}=1$を課すラグランジュ乗数.
+
+・$E^{c}_{i}$は各埋め込み状態$\Ket{\Phi_{i}}$に対する規格化条件$\braket{\Phi_{i}}=1$を課すラグランジュ乗数.
+
+・$\Delta_{i}$はラグランジュ乗数$\Lambda_{i}$を用いて独立変数の行列へと格上げされた.
+$\Delta_{i}$と$\Lambda_{i}$はともに$B\nu_{i}\cross B\nu_{i}$のエルミート行列.
+
+・$\Lambda^{c}_{i}$は,$B\nu_{i}\cross B\nu_{i}$のエルミート行列であり,前セクションでの第2Gutzwiller拘束条件を課すラグランジュ乗数として機能する.
+
+・$\hD_{i}$ と$\hR_{i}$は,$B\nu_{i}\cross \nu_{i}$の次元を持つ長方形行列.
+$\hD_{i}$は$\hR_{i}$の定義を課すためのラグランジュ乗数として導入された.
+
+ラグランジュ関数が$\Ket{\Psi_{0}}$と$\Ket{\Phi_{i}}$を含む全ての項をそれぞれ２つの補助的なハミルトニアン$\hat{H}_{qp}$と$\hat{H}_{emb}$に統合した.
+
+\begin{equation}
+    \hat{H}_{qp}\dkako{\hR,\Lambda}=\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR\dgr_{i}t_{ij}\hR\dgr_{j}}_{ab}f\dgr_{ia}f_{jb}+\sum_{i=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\Lambda_{i}}_{ab}f\dgr_{ia}f_{ib}.
+\end{equation}
+\begin{equation}
+    \hat{H}^{i}_{emb}\dkako{\hD_{i},\Lambda^{c}_{i}}=\hat{H}^{i}_{loc}\dkako{c_{i\alpha},c\dgr_{i\alpha}}+\sum_{a=1}^{B\nu_{i}}\sum_{\alpha=1}^{\nu_{i}}\kako{\dkako{\hD_{i}}_{a\alpha}c\dgr_{i\alpha}b_{ia}+H.c.}+\sum_{a,b=1}^{B\nu_{i}}\dkako{\Lambda^{c}_{i}}_{ab}b_{ib}b\dgr_{ia}.
+\end{equation}
+ここでひとつめの式は準粒子ハミルトニアン,ふたつめの式は系の$i$番目のフラグメントがバスに結合した不純物模型を表している,埋め込みハミルトニアンと呼ばれる.
+
+ラグランジュ関数の導入によって$\Ket{\Psi_{0}}$と$\Ket{\Phi_{i}}$に対する依存性が線形に変換された.
+これによって問題が単純化された.
+
+\subsection{gGAのラグランジュ方程式}
+$\Ket{\Psi_{0}}$と$E$に関する鞍点条件は$\hat{H}_{qp}$に関するシュレーディンガー方程式となる.
+同様に$\Ket{\Phi_{i}}$と$E^{c}_{i}$に関する鞍点条件は$\hat{H}_{emb}^{i}$に対するシュレーディンガー方程式となる.
+
+パラメータ$\Lambda_{i},\Lambda^{c}_{i},\Delta_{i},\hD_{i},\hR_{i}$に関する残りの鞍点条件を含む,全てのラグランジュ方程式を書き出すために$\hat{H}_{qp}$の定義式を次のように書き換える.
+
+\begin{equation}
+    \hat{H}_{*}\dkako{\hR,\Lambda}=\sum_{i,j=1}^{\hN}\dkako{\Pi_{i}h_{*}\Pi_{j}}_{ab}f\dgr_{ia}f_{jb}.
+\end{equation}
+
+ここで以下の行列を導入した.
+\begin{equation}
+    h_{*}=\pmqty{\Lambda_{1} &\hR_{1}t_{12}\hR\dgr_{2}& \cdots &\hR_{1}t_{1\hN}\hR\dgr_{\hN} \\ \hR_{2}t_{21}\hR\dgr_{1}&\Lambda_{2} &\cdots &\vdots \\
+    \vdots &\vdots  &\ddots  &\vdots\\
+    \hR_{\hN}t_{\hN 1}\hR\dgr_{1} &\cdots &\cdots &\Lambda_{\hN}}.
+\end{equation}
+
+また,各フラグメントに対応する自由度への射影演算子を導入する.
+\begin{equation}
+    \Pi_{i}=\pmqty{\delta_{i1}\dkako{\bm{1}}_{B\nu_{1}\cross B\nu_{1}} &\cdots  &0\\
+    \vdots &\ddots &\vdots \\
+    0 &\cdots &\delta_{i\hN}\dkako{\bm{1}}_{B\nu_{\hN}\cross B\nu_{\hN}}}.
+\end{equation}
+
+ここで$\dkako{\bm{1}}_{n\cross n}$は$n\cross n$の単位行列.
+また,行列$\Delta_{i},\Lambda_{i},\Lambda^{c}_{i}$を,エルミート行列の正規直交基底$\dkako{h_{i}}_{s}$ (カノニカルスカラー積$\kako{A,B}=\Tr \dkako{A\dgr B}$)を用いて展開する.
+
+\begin{align}
+    \Delta_{i}=&\sum_{s=1}^{\kako{B\nu_{i}}^{2}}\dkako{d^{0}_{i}}_{s}\dkako{h^{T}_{i}}_{s}\\
+    \Lambda_{i}=& \sum_{s=1}^{\kako{B\nu_{i}}^{2}}\dkako{l_{i}}_{s}\dkako{h_{i}}_{s}\\
+    \Lambda^{c}_{i}=&\sum_{s=1}^{\kako{B\nu_{i}}^{2}}\dkako{l^{c}_{i}}_{s}\dkako{h_{i}}_{s}.
+\end{align}
+ここで$\Delta_{i},\Lambda_{i},\Lambda^{c}_{i}$の係数は実数値.
+
+セクションのはじめに定義したラグランジュ関数$L$の鞍点は,以下の方程式群によって与えられる.
+
+\begin{align}
+    &\hat{H}_{*}\dkako{\hR,\Lambda}\Ket{\Psi_{0}}=E_{0}\Ket{\Psi_{0}} \label{13-1}\\
+    &\dkako{\Delta_{i}}_{ab}=\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}} \label{13-2}\\
+    &\sum_{c=1}^{B\nu_{i}}\dkako{\hD_{i}}_{c\alpha}\dkako{\bm{1}-\Delta_{i}}^{\ov{1}{2}}_{ac}=\sum_{j}\dkako{t_{ij}\hR\dgr_{j}\Pi_{j}f\kako{h_{*}}\Pi_{i}}_{\alpha a}\label{13-3}\\
+    &\dkako{l^{c}_{i}}_{s}=-\dkako{l_{i}}_{s}-\sum_{c,b=1}^{B\nu_{i}}\sum_{\alpha=1}^{\nu_{i}}\henbi{}{\dkako{d^{0}_{i}}_{s}}\kako{\dkako{\Delta_{i}\kako{\bm{1}-\Delta_{i}}}^{\ov{1}{2}}_{bc}\dkako{\hD_{i}}_{b\alpha}\dkako{\hR_{i}}_{c\alpha}+c.c.} \label{13-4}\\
+    &\hat{H}^{i}_{emb}\Ket{\Phi_{i}}=E^{c}_{i}\Ket{\Phi_{i}} \label{13-5}\\
+    &\Bra{\Phi_{i}}b_{ib}b\dgr_{ia}\Ket{\Phi_{i}}=\dkako{\Delta_{i}}_{ab} \label{13-6}\\
+    &\Bra{\Phi_{i}}c\dgr_{i\alpha}b_{ia}\Ket{\Phi_{i}}=\sum_{c=1}^{B\nu_{i}}\dkako{\Delta_{i}\kako{\bm{1}-\Delta_{i}}}^{\ov{1}{2}}_{ac}\dkako{\hR_{i}}_{c\alpha}.\label{13-7}
+\end{align}
+ここで$f$は絶対零度におけるフェルミ関数.
+
+これらの方程式を解くために数多くの数値的実装が提案されている.
+
+しかし,それらは基本的に計算上のボトルネックとなる$\hat{H}^{i}_{emb}$の基底状態を繰り返し計算することからなる.
+
+・\eqref{13-4}の行列微分は,$\dkako{h^{T}_{i}}_{s}$と$\Delta_{i}$が可換ではないため自明でなく,これを計算する方法は先述した.
+
+この微分の計算コストは主に$\Delta_{i}$の対角化によって決まることに注意が必要.
+
+しかし,この操作は計算コストが低いため全体のコストは実質的に無視できる.
+
+さらにgGAとDMETの関連を探る最近の研究ではこの式と等価でありながら行列微分を必要としない表現が提供されており,実用的な実装においてより効率的なアプローチを提供する可能性がある.
+
+\subsection{gGA方程式のゲージ不変性}
+gGAのラグランジアンが以下のゲージ変換に対して不変であることを容易に示せる.
+\begin{align}
+    \Ket{\Psi_{0}}&\rightarrow \hU\dgr \kako{\theta}\Ket{\Psi_{0}}\\
+    \Ket{\Phi_{i}}&\rightarrow U\dgr_{i}\kako{\theta_{i}}\Ket{\Phi_{i}}\\
+    \hR_{i}&\rightarrow u\dgr_{i}\kako{\theta_{i}}\hR_{i}\\
+    \hD_{i}&\rightarrow u^{T}\kako{\theta_{i}}\hD_{i}\\
+    \Delta_{i}&\rightarrow u^{T}_{i}\kako{\theta_{i}}\Delta_{i}u\sr_{i}\kako{\theta_{i}}\\
+    \Lambda_{i}&\rightarrow u\dgr_{i}\kako{\theta_{i}}\Lambda_{i}u_{i}\kako{\theta_{i}}\\
+    \Lambda^{c}_{i}&\rightarrow u\dgr_{i}\kako{\theta_{i}}\Lambda^{c}_{i}u_{i}\kako{\theta_{i}}.
+\end{align}
+
+ただし
+\begin{align}
+    u_{i}\kako{\theta_{i}}&=e^{i\theta_{i}}\\
+    U_{i}\kako{\theta_{i}}&=e^{i\sum_{a,b=1}^{B\nu_{i}}\dkako{\theta_{i}}_{ab}b\dgr_{ia}b_{ib}}\\
+    \hU\kako{\theta}&=e^{i\sum_{i}\sum_{a,b=1}^{B\nu_{i}}\dkako{\theta_{i}}_{ab}f\dgr_{ia}f_{ib}}
+\end{align}
+である.
+
+なお,$u_{i}(\theta_{i})\in \mathbb{C}^{B\nu_{i}\cross B\nu_{i}}$, $U_{i}\kako{\theta_{i}}\in \mathbb{C}^{2^{B\nu_{i}}\cross 2^{B\nu_{i}}}$, $\hU\kako{\theta}\in \mathbb{C}^{2^{B\nu}\cross 2^{B\nu}}$ (ただし$\nu=\sum_{i=1}^{\hN}\nu_{i}$)であり,$\theta_{i}$はエルミート行列である.
+
+ここでのゲージという言葉はこのようなゲージ変換によって生成されるパラメータの変更がいかなる物理的観測量にも影響を与えないという事実に由来する.
+この方程式の性質はRISBフレームワークとの関連で重要である.
+RISBは実際のゲージ理論の観点から多電子問題を厳密に再定式化したものであり平均場のレベルで上記のラグランジュ方程式に帰着した.
+
+\section{アルゴリズム}
+
+本研究におけるghost Gutzwiller近似の最適化問題は,前節で導出したラグランジュ方程式の解を求めることに帰着する.
+
+この非線形な連立方程式を自己無撞着に解くため,プログラム内部では以下のアルゴリズムを用いて数値計算を実行した.
+
+計算の全体的な流れはフローチャートに示す通りである.
+
+\begin{enumerate}
+    \item \textbf{$U$の更新とパラメータの初期化}:
+    計算対象となる相互作用パラメータ$U$を設定する.
+
+    自己無撞着ループ内で最適化する独立変数として,行列$R$および$\Lambda$の初期値を与える.
+
+    2回目以降の$U$のステップでは,一つ前の$U$で収束したこれら3つのパラメータを初期値として引き継ぐ.
+    
+    \item \textbf{自己無撞着ループの開始}:
+    以下のステップ3からステップ6を,パラメータが収束するまで反復する.
+    
+    \item \textbf{ゲージ固定}:
+    行列$R$および$\Lambda$に対してゲージ変換を行う.
+
+    これにより$\Lambda$が対角化され,かつ$R$の要素が特定の符号と順序を持つように一意にゲージを固定する.
+    
+    \item \textbf{補助変数の計算}:
+    現在のパラメータを用いて,準粒子ハミルトニアンから非相関密度行列$\Delta$を計算する.
+
+    続いて,ラグランジュ乗数$D$および$\Lambda^c$を算出する.
+    
+    \item \textbf{埋め込みハミルトニアンの対角化}:
+    求められたパラメータを用いて各サイトの埋め込みハミルトニアンを構築する.
+
+    そして厳密対角化法を用いて基底状態を求め,各種の局所的な期待値を計算する.
+    
+    \item \textbf{残差評価とパラメータの更新}:
+    厳密対角化から得られた局所期待値と,非相関密度行列$\Delta$を用いた理論値との差を残差関数として評価する.
+
+    この残差はGutzwiller拘束条件からのズレを表している.
+
+    最小二乗法を用いてこの残差が最小となるように,独立変数である$\Lambda$を新しい値に更新する.
+    
+    \item \textbf{収束判定}:
+    更新前後の$R$および$\Lambda$の最大変化量が許容誤差を下回った場合,自己無撞着ループを終了してステップ1に戻り,次の$U$の計算へ進む.
+
+    収束していない場合はステップ3へ戻り反復を続ける.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    % フローチャートの図形スタイルの定義
+    \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=gray!20]
+    \tikzstyle{process} = [rectangle, minimum width=4cm, minimum height=1cm, text centered, draw=black, fill=white]
+    \tikzstyle{decision} = [diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=white]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+
+    \begin{tikzpicture}[node distance=1.8cm]
+
+        % ノードの配置
+        \node (start)[startstop] {計算開始};
+        \node (init)[process, below of=start] {$U$の更新とパラメータ$(R,\Lambda)$の初期値設定 (引き継ぎ)};
+        \node (gauge)[process, below of=init] {ゲージ固定 ($R, \Lambda$)};
+        \node (aux)[process, below of=gauge] {補助変数の計算 ($\Delta, D, \Lambda^c$)};
+        \node (diag)[process, below of=aux] {$\hat{H}_{emb}$の構築と厳密対角化};
+        \node (update)[process, below of=diag] {残差評価とパラメータ($\Lambda$)の更新};
+        \node (conv)[decision, below of=update, yshift=-0.5cm] {収束したか？};
+        \node (nextU)[decision, below of=conv, yshift=-1.2cm] {全$U$の計算終了？};
+        \node (stop)[startstop, below of=nextU, yshift=-0.5cm] {計算終了};
+
+        % 矢印の描画
+        \draw [arrow] (start)-- (init);
+        \draw [arrow] (init)-- (gauge);
+        \draw [arrow] (gauge)-- (aux);
+        \draw [arrow] (aux)-- (diag);
+        \draw [arrow] (diag)-- (update);
+        \draw [arrow] (update)-- (conv);
+        
+        % 収束判定の分岐 (Noの場合はゲージ固定へ戻る)
+        \draw [arrow] (conv.east)-- ++(2.5,0)node[midway, above]{No} |- (gauge.east);
+        
+        % 収束判定の分岐 (Yesの場合は次のU判定へ)
+        \draw [arrow] (conv.south)-- node[anchor=east] {Yes} (nextU.north);
+        
+        % 全U終了判定の分岐 (Noの場合は初期化へ戻る)
+        \draw [arrow] (nextU.west)-- ++(-3.0,0)node[midway, above]{No (次の$U$へ)} |- (init.west);
+        
+        % 全U終了判定の分岐 (Yesの場合は終了へ)
+        \draw [arrow] (nextU.south)-- node[anchor=east] {Yes} (stop.north);
+
+    \end{tikzpicture}
+    \caption{gGAにおけるパラメータ最適化と$U$スイープの計算アルゴリズムを示すフローチャート.}
+    \label{fig:flowchart}
+\end{figure}
+
+\section{計算条件}
+
+前節のアルゴリズムを実行するにあたり,本研究で用いた具体的な数値計算の条件を以下にまとめる.
+
+\begin{itemize}
+    \item \textbf{相互作用パラメータとスイープ方向}:
+    金属からモット絶縁体への相転移を観測するため,クーロン相互作用$U$を0.1から5.0の範囲で0.1刻みで変化させた.
+
+    一次相転移に伴うヒステリシスを捉えるため,昇順スイープと降順スイープの2つの経路で計算を行った.
+
+    昇順スイープでは小さい$U$側の金属状態の解を初期値とし,降順スイープでは大きい$U$側のモット絶縁体状態の解を初期値とした.
+    
+    \item \textbf{収束判定の閾値}:
+    自己無撞着ループの収束判定には,更新前後のパラメータ$R$および$\Lambda$の最大変化量が$10^{-3}$未満となることを条件とした.
+
+    または,全エネルギーおよび準粒子重み$Z$の変化量が$10^{-4}$未満となることを条件とした.
+
+    また,最大反復回数は30回に設定した.
+    
+    \item \textbf{計算温度}:
+    本研究は絶対零度の基底状態を対象としている.
+
+    しかし数値計算アルゴリズムの安定性を確保するため,フェルミ分布関数によるスマアリングとして十分に低い人工温度を導入した.
+
+    具体的には$T = 0.003$と設定した.
+\end{itemize}

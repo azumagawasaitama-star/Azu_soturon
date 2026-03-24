@@ -1,0 +1,309 @@
+% Chapter 2 placeholder
+
+本章では, 本研究で対象とする物理系を記述する理論モデルと, その解析に用いる計算手法について述べる. まず基本となるハバードモデルについて概説し,本研究の主眼である ghost Gutzwiller 近似 (gGA)の定式化について詳細を解説する. 
+
+\section{ハバードモデル}
+
+強相関電子系の理論的研究において, ハバードモデル (Hubbard model)は電子間の局所的なクーロン相互作用と非局所的な運動エネルギーの競合を記述する, 最も基礎的かつ重要な模型である. 
+本研究で扱う多軌道系も含む一般的なハバードモデルのハミルトニアン $\hat{H}$ は, 局所的な相互作用項と非局所的なホッピング (跳び移り)項の和として, 以下のように定式化される.
+\begin{equation}
+    \hat{H} = \sum_{i=1}^{\mathcal{N}} \hat{H}_{loc}^i[c_{i\alpha}^\dagger, c_{i\alpha}] + \sum_{i \neq j} \hat{T}_{ij}.
+    \label{eq:hubbard_general}
+\end{equation}
+\begin{equation}
+    \hat{T}_{ij} = \sum_{\alpha=1}^{\nu_i} \sum_{\beta=1}^{\nu_j} [t_{ij}]_{\alpha\beta} c_{i\alpha}^\dagger c_{j\beta}.
+    \label{eq:hopping_general}
+\end{equation}
+ここで, $i$ および $j$ は格子を構成するサイトのインデックスを表し, $\mathcal{N}$ は全サイト数である. 
+
+$\alpha$ および $\beta$ は各サイト内のフェルミオンモード (軌道やスピン自由度)のインデックスであり, $\nu_i$ はサイト $i$ におけるモード数を表す. 
+第1項の $\hat{H}_{loc}^i$ はサイト $i$ における任意の局所演算子であり, 1体項や電子間の強いクーロン斥力を表す2体相互作用項を含む. 
+
+第2項の $\hat{T}_{ij}$ は異なるサイト $i, j$ 間の電子のホッピングを表し, $[t_{ij}]_{\alpha\beta}$ はその遷移確率を与える行列要素である. 
+
+前章で議論した Gutzwiller 近似の基礎となる単一バンドモデル (各サイトに軌道が1つでスピン $\sigma = \uparrow, \downarrow$ のみを持つ場合)においては, 式(\ref{eq:hubbard_general})は以下のような馴染み深い形に簡略化される.
+\begin{equation}
+    \hat{H} = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i\sigma}^\dagger c_{j\sigma} + H.c. \right)+ U \sum_i n_{i\uparrow} n_{i\downarrow}.
+    \label{eq:hubbard_single}
+\end{equation}
+ここで, 第1項の $t$ は最隣接サイト $\langle i,j \rangle$ 間のホッピング積分, 第2項の $U$ は同一サイトに2つの電子が占有した (二重占有)際に生じるクーロン斥力エネルギーである. 
+このモデルは外見こそ単純であるものの, $U$ と $t$ の比 ($U/t$)によって, 電子が自由に動き回る金属状態から, 強い斥力によって電子が各サイトに局在するモット絶縁体状態への転移 (モット転移)など, 豊かな物理現象を記述することができる. 
+
+以降の節では, このハバードモデルを解くための近似手法であるgGAについて定式化を行う.
+\section{定義}
+\subsection{Gutzwiller変分関数}
+Gutzwiller変分関数を次の形で導入する.
+\begin{equation}
+\Ket{\Psi_{\text{G}}}=\hat{\mathcal{P}}_{\text{G}}\Ket{\Psi_{0}},\quad\hP_{\text{G}}=\prod_{i=1}^{\mathcal{N}}\hP_{i}.
+\end{equation}
+ここで\(\Ket{\Psi_{0}}\)は補助空間の1粒子状態波動関数であり,\(\Ket{\Psi_{\text{G}}}\)は物理空間の波動関数である.
+\begin{align}
+    \hP_{i}&=\sum_{\Gamma=0}^{2^{\nu_{i}}-1}\sum_{n=0}^{2^{B\nu_{i}}-1}\dkako{\Lambda_{i}}_{\Gamma{n}}\Ket{\Gamma,i}\Bra{n,i}\\
+    \Ket{\Gamma,i}&=\dkako{c\dgr_{i1}}^{q_{1}(\Gamma)}\cdots \dkako{c\dgr_{i\nu_{i}}}^{q_{\nu_{i}}(\Gamma)}\Ket{0}\\
+    \Ket{n,i}&=\dkako{f\dgr_{i1}}^{q_{1}(n)}\cdots \dkako{f\dgr_{iB_{\nu_{i}}}}^{q_{B_{\nu_{i}}}(n)}\Ket{0}.
+\end{align}
+これによって,変分エネルギーは以下のようになる.
+\begin{equation}
+  \ve(\Psi_{0},\hP_{\text{G}})=\Bra{\Psi_{\text{G}}}\hat{H}\Ket{\Psi_{\text{G}}}=\Bra{\Psi_{0}}\hP\dgr_{G}\hat{H}\hP_{G}\Ket{\Psi_{0}}. \label{ve-1}
+\end{equation}
+
+ここで, $|\Gamma, i\rangle$ は物理的なフェルミオンの生成演算子 $c_{i\alpha}^\dagger$ によって生成される物理空間の局所Fock状態であり, $|n, i\rangle$ は補助的な生成演算子 $f_{ia}^\dagger$ によって生成される補助空間の局所フォック状態である. 
+
+$q_\alpha(\Gamma)$ および $q_a(n)$ はそれぞれ整数 $\Gamma$ と $n$ を2進数展開した際の各桁の値 (占有数)を表す. 
+
+行列 $[\Lambda_i]_{\Gamma n}$ は, 補助空間の状態から物理空間の状態へのマッピングの重みを決定する変分パラメータであり, 従来のGAにおけるパラメータ $g$ を多軌道およびゴースト空間へと究極的に一般化したものに相当する. 
+
+また, パラメータ $B$ は補助空間の軌道数 ($B\nu_i$)を決定する重要な整数である. 
+
+従来のGAでは, 補助状態 $|\Psi_0\rangle$ は物理空間内に直接構築され, 演算子 $\hat{\mathcal{P}}_G$ も物理空間の内部のみで作用して重みを調整していた. 
+
+一方gGAでは, 補助状態 $|\Psi_0\rangle$ は補助空間に構築され, 演算子 $\hat{\mathcal{P}}_G$ は補助空間と物理空間を橋渡しする役割を担う. 
+
+$B=1$とした場合, 補助空間は物理空間の単なる複製となり, gGAの数学的構造は従来のGAと完全に等価なものへと帰着する. 
+
+しかし, $B$ を1より大きい整数に設定すると, 補助空間が物理空間よりも拡張され, 導入されたゴースト自由度によって変分空間が体系的に豊かになる.
+
+これにより, gGAは従来のGAよりもはるかに柔軟な表現力を獲得し, 精度を飛躍的に向上させることができるのである.
+
+\subsection{Gutzwiller拘束条件}
+gGAの目的は, 最適な変分パラメータ $[\Lambda_i]_{\Gamma n}$ と単一粒子波動関数 $|\Psi_0\rangle$ を決定し, 変分エネルギー $\mathcal{E} $ を最小化することである. 
+
+しかし, 演算子 $\hat{\mathcal{P}}_G$ が全サイトの積 $\prod_k \hat{\mathcal{P}}_k$ で与えられるため, これを直接計算しようとするとWickの定理による収縮が膨大になる.
+そこで, この多体問題を解析的に扱いやすい形へと落とし込むために, 以下の2つの極めて重要な近似および制約を導入する. 
+
+\begin{enumerate}
+    \item \textbf{Gutzwiller拘束条件 (Gutzwiller Constraints)} \\
+    各サイトの演算子 $\hat{\mathcal{P}}_i$ および補助空間の補助状態 $|\Psi_0\rangle$ に対して, 以下の局所的な規格化条件を課す.
+    \begin{enumerate}
+    \item \textbf{規格化条件} 
+    \begin{equation}
+        \langle \Psi_0 | \hat{\mathcal{P}}_i^\dagger \hat{\mathcal{P}}_i | \Psi_0 \rangle = 1.
+        \label{eq:gutz_constraint_1}
+    \end{equation}
+    \item \textbf{一粒子密度行列を保つ条件} 
+    \begin{equation}
+        \langle \Psi_0 | \hat{\mathcal{P}}_i^\dagger \hat{\mathcal{P}}_i f_{ia}^\dagger f_{ib} | \Psi_0 \rangle = \langle \Psi_0 | f_{ia}^\dagger f_{ib} | \Psi_0 \rangle \quad (\forall a,b = 1, \dots, B\nu_i).
+        \label{eq:gutz_constraint_2}
+    \end{equation}
+    この制約は, 第1章で扱った単一バンドGAにおける「二重占有密度の最適化条件 (変数 $g$ の消去)」を多軌道系へと一般化したものに相当する. この条件を課すことで, $\hat{\mathcal{P}}_i^\dagger \hat{\mathcal{P}}_i$ と他の演算子を結ぶ2本のWick収縮線を持つ項の寄与が, 巧妙に相殺されて厳密にゼロになるという強力な数学的性質がもたらされる. 
+    \end{enumerate}
+    \item \textbf{Gutzwiller近似 (Gutzwiller Approximation)} \\
+    ハバードモデルの格子が無限次元 (配位数が無限大)である極限を仮定し, 異なるサイト間にまたがる4本以上の非局所的なWick収縮線を持つ項をすべて無視する. 前述の通り, DMFTもこの無限次元極限において厳密となる枠組みであり, この近似がgGAとDMFTを理論的に強く結びつける根拠となっている. 
+\end{enumerate}
+
+\subsubsection{Gutzwiller近似}
+この近似は\eqref{ve-1}の評価の際に生じるWick縮約の一部を無視することであり,そのような項が配位数 (格子上の各サイトが結合している隣接点の数)が無限大の極限で消えることに基づいている.つまり,この近似はこの極限で厳密となるDMFTとの重要な関連性を構成している.
+
+\subsubsection{Gutzwillerによる帰結}
+\eqref{kousoku-2}の左辺を考える.
+
+この文脈では,補助空間に完全に存在する演算子$\hP\dgr_{i}\hP_{i}$を定理の演算子$X$として扱うことができる.この定理に従って
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}=\Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}_{d}+\Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}_{c}.
+\end{equation}
+これは,非連結項 ($f\dgr_{ia}$が$f_{ib}$と縮約され,$\hP\dgr_{i}\hP_{i}$が自己縮約される.)と連結項 ($f\dgr_{ia}$と$f_{ib}$の両方が$\hP\dgr_{i}\hP_{i}$と縮約される.)に分けられる.
+
+第一項はさらにGutzwiller拘束条件のひとつめから
+\begin{equation}
+\begin{split}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}_{d}=& \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}\Ket{\Psi_{0}}\Bra{\Psi_{0}}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}\\
+    =&1\cdot \Bra{\Psi_{0}}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}\\
+    =&\Bra{\Psi_{0}}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}.
+\end{split}
+\end{equation}
+とできる.
+
+よって,
+\begin{equation}
+     \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}= \Bra{\Psi_{0}}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}+ \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}_{c}.
+\end{equation}
+さらにGutzwiller拘束条件のふたつめ
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}
+    =\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}.
+\end{equation}
+より
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}_{c}
+    =0.
+\end{equation}
+である.
+
+Wickの定理をこの左辺に適用するとこの和における全ての連結項の和を次のように表せる.
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}_{c}=\sum_{a'b'}\xi^{a'b'}_{i}\Bra{\Psi_{0}}f_{ia'}f\dgr_{ia}\Ket{\Psi_{0}}\Bra{\Psi_{0}}f\dgr_{ib'}f_{ib}\Ket{\Psi_{0}}=0. \label{sum-xi-1}
+\end{equation}
+ここで,係数の$\xi^{a'b'}_{i}$は$\Ket{\Psi_{0}}$と演算子$\hP\dgr_{i}\hP_{i}$にのみ依存し,$a,b$には依存しない.
+
+ここで
+\begin{equation}
+    \dkako{\Delta_{i}}_{ab}=\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}.
+\end{equation}
+と行列を定義する.
+
+するとこの式は
+\begin{equation}
+\begin{split}
+    \sum_{a'b'}\xi^{a'b'}_{i}\Bra{\Psi_{0}}\kako{1-f\dgr_{ia}f_{ia'}}\Ket{\Psi_{0}}\dkako{\Delta_{i}}_{b'b}=&0 \\
+    \sum_{a'b'}\xi^{a'b'}_{i}\kako{1-\dkako{\Delta_{i}}_{aa'}}\dkako{\Delta_{i}}_{b'b}=&0 \\
+    \sum_{a'b'}\kako{1-\dkako{\Delta_{i}}_{aa'}}\xi^{a'b'}_{i}\dkako{\Delta_{i}}_{b'b}=&0 \\
+    \sum_{b'}\dkako{\kako{1-\Delta_{i}}\xi_{i}}_{ab'}\dkako{\Delta_{i}}_{b'b}=&0\\
+    \kako{1-\Delta_{i}}\xi_{i}\Delta_{i}=&0.
+\end{split}
+\end{equation}
+と書き換えられる.
+
+ここから,$\Delta_{i},\kako{1-\Delta_{i}}$のどちらも縮退していない限りつまり$\Delta_{i}$のどの固有値も1または0に等しくない限り
+\begin{equation}
+    \xi_{i}=0.  \label{xi-1}
+\end{equation}
+となる.
+
+ここでさらに,期待値$\Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}\hat{X}\Ket{\Psi_{0}}$の評価を考える.より形式的に,$\hP\dgr_{i}$と$\hP_{i}$から現れ,$\hat{X}$につながる２本の縮約線を考えると次のようにできる.
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}\hat{X}\Ket{\Psi_{0}}_{c}=\sum_{a'b'}\xi^{a'b'}_{i}\Bra{\Psi_{0}}f_{ia'}f\dgr_{ia}\Ket{\Psi_{0}}\Bra{\Psi_{0}}f\dgr_{ib'}f_{ib}\Ket{\Psi_{0}}x^{ab}=0. \label{xi-2}
+\end{equation}
+とかける.
+
+式\eqref{xi-2}の係数$\xi^{a'b'}_{i}$はそれぞれ$a,b$と縮約される$a',b'$を除いた後の$\hP\dgr_{i}\hP_{i}$内の演算子間の自己縮約から生じる全ての項の和を表す.一方,係数$x^{ab}$はそれぞれ$a',b'$と縮約される$a,b$を除いた後の$\hat{X}$内の演算子間の自己縮約から生じるすべての項の和を意味する.係数$\xi^{a'b'}_{i}$は$\Ket{\Psi_{0}},a',b'$にのみ依存し,$\hat{X}$の影響を受けない.従って,これらは\eqref{sum-xi-1}のものと同等であり,Gutzwiller拘束条件から$0$であることがわかる.
+
+つまり,$\hP\dgr_{i}\hP_{i}$と$\hat{X}$を結ぶ縮約線が2本の項は消えることがわかった.
+
+\subsubsection{Gutzwiller近似の明確な定義}
+Gutzwiller近似はGutzwiller拘束条件と組み合わせて使用される重要な単純化でありgGA変分状態に関するハミルトニアンの期待値の計算を効率化する上で不可欠な役割を演じる.
+
+具体的にはこの近似は$\Ket{\Psi_{0}}$に関する期待値の中でふたつ以上の非局所的な縮約を含む項を無視することを含む.
+
+この文脈で非局所的な縮約とは$i\ne j$の場合の$\Bra{\Psi_{0}}f\dgr_{ia}f_{jb}\Ket{\Psi_{0}}$のように異なるサイトに作用する演算子を含む縮約をさす.
+
+この近似の根拠は各サイトが無限に連結している無限配位数の極限におけるこれらの項の振る舞いに根ざしている.
+
+この極限では2つ以上の非局所的な縮約を持つ全ての項が消える.
+
+この点はDMFTがこの極限で厳密になるため特に重要でありGutzwiller近似とDMFTの間に意味のある関連性を確立する.
+
+\subsection{局所的な期待値の評価}
+ここではgGAにおける本質的なステップのひとつであるgGA波動関数$\Ket{\Psi_{\text{G}}}$に関する局所的なハミルトニアン項の期待値の計算に焦点を当てる.
+
+そのために,\eqref{H_loc-1}で定義されたサイト$i$に作用する局所ハミルトニアン項$\hat{H}^{i}_{loc}$を考える.この項の$\Ket{\Psi_{\text{G}}}$に関する期待値は
+\begin{equation}
+    \Bra{\Psi_{\text{G}}}\hat{H}^{i}_{loc}\Ket{\Psi_{\text{G}}}=\Bra{\Psi_{0}}\kako{\prod_{k=1}^{\hN}\hP\dgr_{k}}\hat{H}^{i}_{loc}\kako{\prod_{k=1}^{\hN}\hP_{k}}\Ket{\Psi_{0}}=\Bra{\Psi_{0}}\prod_{k\ne i}\kako{\hP\dgr_{k}\hP_{k}}\kako{\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}}\Ket{\Psi_{0}}. \label{H_loc-exception}
+\end{equation}
+一見するとこの式は膨大な数のWick縮約を取りうるために近似しないで評価することは困難に思えるがGutzwiller拘束条件とGutzwiller近似によって大幅に簡単化される.
+
+この式の中にある$\hP\dgr_{j}\hP_{j}$を考える.
+\begin{equation}
+    \Bra{\Psi_{0}}\prod_{k\ne i}\kako{\hP\dgr_{k}\hP_{k}}\kako{\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}}\Ket{\Psi_{0}} =\Bra{\Psi_{0}}\kako{\hP\dgr_{j}\hP_{j}}\prod_{k\ne i,j}\kako{\hP\dgr_{k}\hP_{k}}\kako{\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}}\Ket{\Psi_{0}}. 
+\end{equation}
+Wickの定理によって期待値に寄与する項は以下のように分類できる.
+
+
+・非連結項
+
+これらは$\hP\dgr_{j}\hP_{j}$と他の演算子の間に縮約線がない項.
+Gutzwiller拘束条件のひとつめを用いるとこれらの項の寄与は$1$となる.
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{j}\hP_{j}\Ket{\Psi_{0}}\Bra{\Psi_{0}}\prod_{k'\ne i,j}\kako{\hP\dgr_{k'}\hP_{k'}}\kako{\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}}\Ket{\Psi_{0}}=\Bra{\Psi_{0}}\prod_{k'\ne i,j}\kako{\hP\dgr_{k'}\hP_{k'}}\kako{\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}}\Ket{\Psi_{0}}.
+\end{equation}
+
+・２本の縮約線を持つ項
+
+これらは,$\hP\dgr_{j}\hP_{j}$と他の演算子との間に２本の縮約線がある項.前で示したようにこれらの項の寄与は$0$になる.
+
+・4本の縮約線を持つ項
+
+これらは$\hP\dgr_{j}\hP_{j}$と他の演算子との間に4本の縮約線がある項.Gutzwiller近似によりこれらは実効的には$0$となる.
+
+以上のことは各ブロック$\hP\dgr_{j}\hP_{j}$に独立して適用できる.これを各ブロックに繰り返し適用することでそれらをひとつずつ消していくことができる.これを繰り返すことで式はサイト$i$に対応するブロックだけが残るまで単純化される.
+
+これにより\eqref{H_loc-exception}は
+\begin{equation}
+    \Bra{\Psi_{\text{G}}}\hat{H}^{i}_{loc}\Ket{\Psi_{\text{G}}}\approx \Bra{\Psi_{0}}\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}\Ket{\Psi_{0}}.
+\end{equation}
+この式は局所ハミルトニアン項の期待値を計算する際の複雑さを大幅に削減し,実用的な実装を可能にする.
+
+\subsection{一体非局所期待値の評価}
+ここでは,前で議論した局所演算子についての方法を拡張し,gGAの枠組み内で一体非局所演算子の期待値を計算する.
+
+具体的には$c\dgr_{i\alpha}c_{j\beta}$の形の演算子を考える.
+
+ここで$i,j$はサイトのラベル,$\alpha,\beta$はスピンなどの量子数である.
+
+我々が計算したいのはgGA波動関数$\Ket{\Psi_{\text{G}}}$に関する演算子の期待値である.この一体非局所演算子の期待値は次のようにかける.
+\begin{equation}
+\begin{split}
+    \Bra{\Psi_{\text{G}}}c\dgr_{i\alpha}c_{j\beta}\Ket{\Psi_{\text{G}}}=&\Bra{\Psi_{0}}\kako{\prod_{k=1}^{\hN}\hP\dgr_{k}}c\dgr_{i\alpha}c_{j\beta}\kako{\prod_{k=1}^{\hN}\hP_{k}}\Ket{\Psi_{0}}\\
+    =&\Bra{\Psi_{0}}\kako{\prod_{k\ne i,j}\hP\dgr_{k}\hP_{k}}\kako{\hP\dgr_{i} c\dgr_{i\alpha}\hP_{i} }\kako{\hP\dgr_{j} c_{j\beta}\hP_{j}}\Ket{\Psi_{0}}.
+\end{split}
+\end{equation}
+
+前のセクションと同様,$k \ne i,j$の項をまとめた.
+
+ここでの複雑な点は非局所演算子が2つの異なるサイト$i,j$を伴う事実に起因している.
+
+前セクションと同じようにこの式を簡単にすることができる.
+
+Gutzwiller拘束条件と近似により$k \ne i,j$に対する全ての$\hP\dgr_{k}\hP_{k}$ブロックを繰り返し消去することができる.
+
+局所項と類似の方法で非連結項,２本の縮約線を持つ項,および4本の縮約線を持つ項は局所ハミルトニアン項に対して行われたのと同じように扱うことができ,結果として次のようになる.
+\begin{equation}
+    \Bra{\Psi_{\text{G}}}c\dgr_{i\alpha}c_{j\beta}\Ket{\Psi_{\text{G}}}\approx \Bra{\Psi_{0}}\kako{\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}}\kako{\hP\dgr_{j}c_{j\beta}\hP_{j}}\Ket{\Psi_{0}}.
+\end{equation}
+この式は,さらに簡単にすることもできる.
+
+・Wick縮約の数による項の分類
+
+ブロック$i,j$の間のWick縮約の数に従って分類することで整理できる.具体的には,ブロック$i,j$の間にWick縮約がひとつだけの全ての項をまとめ,次に3つ,5つ,,,といったように分類する.
+
+・複数のWick縮約を持つ項の無視
+
+Gutzwiller近似によりブロック$i,j$の間に3つ以上のWick縮約を持つ項は無視される.従って,ひとつのWick縮約を持つ項のみを考慮すれば良い.
+
+・補助空間表現
+
+$\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}$は完全に補助空間内で作用するため,$f_{ia}$と$f\dgr_{ia}$モードの代数的組み合わせで表現できる.これは,$f_{jb}$と$f\dgr_{jb}$モードを持つ$j$ブロックにも同様に適用できる.
+
+・自己縮約のための行列表現
+
+$j$部分系に属する消滅演算子と$f\dgr_{ia}$を縮約した後に残る$\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}$内の全ての自己縮約の寄与を因子分解し,それを$B\nu_{i}\cross \nu_{i}$行列$\dkako{\hR_{i}}_{a\alpha}$に表現することができる.
+\begin{equation}
+    \Bra{\Psi_{0}}\kako{\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}}\kako{\hP\dgr_{j}c_{j\beta}\hP_{j}}\Ket{\Psi_{0}}=\sum_{a=1}^{B\nu_{i}}\sum_{b=1}^{B\nu_{j}}\Bra{\Psi_{0}}\kako{\dkako{\hR_{i}}_{a\alpha}f\dgr_{ia}}\kako{\dkako{\hR_{j}}\dgr_{\beta b}f_{jb}}\Ket{\Psi_{0}} \quad (i\ne j).
+\end{equation}
+
+・係数行列を用いた局所期待値の計算
+
+同じ係数行列$\hR_{i}$は,次の表現でも自己縮約から生じる.
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}f_{ib}\Ket{\Psi_{0}}=\sum_{a=1}^{B\nu_{i}}\dkako{\hR_{i}}_{a\alpha}\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}}.
+\end{equation}
+後で見るように,上記の手順は$\hR_{i}$の計算に使用でき,それによって局所期待値の計算が容易になる.
+
+\subsection{gGAによる変分エネルギーの評価まとめ}
+gGAの枠組みで,Gutzwiller拘束条件とGutzwiller近似を用いて変分エネルギーを評価してきたここまでの展開をまとめる.
+
+\subsubsection{局所演算子の期待値}
+次の方程式を導出した.
+\begin{equation}
+    \Bra{\Psi_{\text{G}}}\hat{H}^{i}_{loc}\Ket{\Psi_{\text{G}}}\approx \Bra{\Psi_{0}}\hP\dgr_{i}\hat{H}^{i}_{loc}\hP_{i}\Ket{\Psi_{0}}.
+\end{equation}
+
+\subsubsection{非局所演算子の期待値}
+次のように導出した.
+\begin{equation}
+    \Bra{\Psi_{\text{G}}}c\dgr_{i\alpha}c_{j\beta}\Ket{\Psi_{\text{G}}}\approx \sum_{a=1}^{B\nu_{i}}\sum_{b=1}^{B\nu_{j}}\Bra{\Psi_{0}}\kako{\dkako{\hR_{i}}_{a\alpha}f\dgr_{ia}}\kako{\dkako{\hR_{j}}\dgr_{\beta b}f_{jb}}\Ket{\Psi_{0}}.
+\end{equation}
+
+ここで,行列$\hR_{i}$は次によって特徴づけられる.
+\begin{equation}
+    \Bra{\Psi_{0}}\hP\dgr_{i}c\dgr_{i\alpha}\hP_{i}f_{ia}\Ket{\Psi_{0}}=\sum_{b=1}^{B\nu_{i}}\dkako{\hR_{i}}_{b\alpha}\Bra{\Psi_{0}}f\dgr_{ib}f_{ia}\Ket{\Psi_{0}}.
+\end{equation}
+この寄与を合計すると,変分エネルギー$\ve$は次のように表現できる.
+\begin{equation}
+    \ve=\sum_{i,j=1}^{\hN}\sum_{a,b=1}^{B\nu_{i}}\dkako{\hR_{i}t_{ij}\hR\dgr_{j}}_{ab}\Bra{\Psi_{0}}f\dgr_{ia}f_{jb}\Ket{\Psi_{0}}+\sum_{i=1}^{\hN}\Bra{\Psi_{0}}\hP\dgr_{i}\hat{H}^{i}_{loc}\dkako{c\dgr_{i\alpha},c_{i\alpha}}\hP_{i}\Ket{\Psi_{0}}.
+\end{equation}
+このエネルギーは,Gutzwiller拘束条件を満たすという条件のもとで最小化されなければならない.
+\begin{align}
+    &\Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}\Ket{\Psi_{0}}=\braket{\Psi_{0}}=1. \label{kousoku-1}\\ 
+    &\Bra{\Psi_{0}}\hP\dgr_{i}\hP_{i}f\dgr_{ib}f_{ib}\Ket{\Psi_{0}}=\Bra{\Psi_{0}}f\dgr_{ia}f_{ib}\Ket{\Psi_{0}} \quad (\forall a,b=1,\cdots,B\nu_{i}).\label{kousoku-2}
+\end{align}
+本質的に,問題を$\Ket{\Psi_{0}}$に関する局所演算子の期待値を計算することに帰着させた.

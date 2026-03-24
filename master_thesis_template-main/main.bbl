@@ -1,0 +1,85 @@
+%apsrev4-2.bst 2019-01-14 (MD) hand-edited version of apsrev4-1.bst
+%Control: key (0)
+%Control: author (72) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (-1) disabled
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{11}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{https://doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Lanat{\`a}}(2023)}]{Lanata2023}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Lanat{\`a}}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {Orbital Physics in Correlated Matter}}},\ \bibinfo {editor} {edited by\ \bibinfo {editor} {\bibfnamefont {E.}~\bibnamefont {Pavarini}}\ and\ \bibinfo {editor} {\bibfnamefont {E.}~\bibnamefont {Koch}}}\ (\bibinfo  {publisher} {Forschungszentrum J{\"u}lich},\ \bibinfo {year} {2023})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Frank}\ \emph {et~al.}(2021)\citenamefont {Frank}, \citenamefont {Sch{\"a}fer}, \citenamefont {Biermann},\ and\ \citenamefont {Sangiovanni}}]{Frank2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~S.}\ \bibnamefont {Frank}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Sch{\"a}fer}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Biermann}},\ and\ \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Sangiovanni}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Physical Review B}\ }\textbf {\bibinfo {volume} {104}},\ \bibinfo {pages} {L081103} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Dickhoff}\ and\ \citenamefont {Van~Voorhis}(2005)}]{Dickhoff}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~H.}\ \bibnamefont {Dickhoff}}\ and\ \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Van~Voorhis}},\ }in\ \href@noop {} {\emph {\bibinfo {booktitle} {Many-Body Theory Exposed!}}}\ (\bibinfo {year} {2005})\ pp.\ \bibinfo {pages} {13--39}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Wu}\ \emph {et~al.}(2024)\citenamefont {Wu}, \citenamefont {Van~Dongen}, \citenamefont {Sangiovanni},\ and\ \citenamefont {Lanat{\`a}}}]{Wu2024}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~C.}\ \bibnamefont {Wu}}, \bibinfo {author} {\bibfnamefont {J.~C.}\ \bibnamefont {Van~Dongen}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Sangiovanni}},\ and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Lanat{\`a}}},\ }\href@noop {} {\bibinfo {title} {Ghost gutzwiller approximation: A framework for strongly correlated materials}} (\bibinfo {year} {2024})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Fazekas}(1999)}]{Fazekas1999}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Fazekas}},\ }\href@noop {} {\emph {\bibinfo {title} {Lecture Notes on Electron Correlation and Magnetism}}},\ Vol.~\bibinfo {volume} {5}\ (\bibinfo  {publisher} {World Scientific},\ \bibinfo {year} {1999})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Georges}\ \emph {et~al.}(1996)\citenamefont {Georges}, \citenamefont {Kotliar}, \citenamefont {Krauth},\ and\ \citenamefont {Rozenberg}}]{Georges1996}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Georges}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Kotliar}}, \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Krauth}},\ and\ \bibinfo {author} {\bibfnamefont {M.~J.}\ \bibnamefont {Rozenberg}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume} {68}},\ \bibinfo {pages} {13} (\bibinfo {year} {1996})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bulla}(1999)}]{Bulla1999}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Bulla}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {83}},\ \bibinfo {pages} {136} (\bibinfo {year} {1999})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gull}\ \emph {et~al.}(2011)\citenamefont {Gull}, \citenamefont {Millis}, \citenamefont {Lichtenstein}, \citenamefont {Rubtsov}, \citenamefont {Troyer},\ and\ \citenamefont {Werner}}]{Gull2011}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Gull}}, \bibinfo {author} {\bibfnamefont {A.~J.}\ \bibnamefont {Millis}}, \bibinfo {author} {\bibfnamefont {A.~I.}\ \bibnamefont {Lichtenstein}}, \bibinfo {author} {\bibfnamefont {A.~N.}\ \bibnamefont {Rubtsov}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Troyer}},\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Werner}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Rev. Mod. Phys.}\ }\textbf {\bibinfo {volume} {83}},\ \bibinfo {pages} {349} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gutzwiller}(1963)}]{Gutzwiller1963}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~C.}\ \bibnamefont {Gutzwiller}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {10}},\ \bibinfo {pages} {159} (\bibinfo {year} {1963})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Brinkman}\ and\ \citenamefont {Rice}(1970)}]{Brinkman1970}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~F.}\ \bibnamefont {Brinkman}}\ and\ \bibinfo {author} {\bibfnamefont {T.~M.}\ \bibnamefont {Rice}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages} {4302} (\bibinfo {year} {1970})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {{宮川 智章}}(2013)}]{Miyagawa2013}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibnamefont {{宮川 智章}}},\ }\emph {\bibinfo {title} {変分モンテカルロ法による非磁性状態モット転移の微視的メカニズム}},\ \href@noop {} {Ph.D. thesis},\ \bibinfo  {school} {東京理科大学} (\bibinfo {year} {2013})\BibitemShut {NoStop}%
+\end{thebibliography}%

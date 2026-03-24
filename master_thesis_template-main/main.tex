@@ -1,0 +1,264 @@
+\documentclass[a4paper,12pt,titlepage,openany]{bxjsbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　スタイルファイル　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec} % 日本語フォントを扱う（必要なら明示指定）
+\usepackage[square, numbers, sort&compress]{natbib}
+%本文
+\usepackage{ascmac} % 装飾（囲いとか）
+\usepackage{enumerate} % 箇条書きのオプション
+\usepackage{multicol} %n段組
+\usepackage{ulem}
+% \usepackage{comment}
+%数式
+\usepackage{amssymb,amsfonts} % 数学1
+\usepackage{mathtools} % 数学2
+\usepackage{amsthm} % 数学定理証明環境
+\usepackage{mathrsfs} % 花文字
+\usepackage{bm} % 太字
+\usepackage{cancel} % 取り消し線（相殺）
+\usepackage{centernot} % 中央で取り消し線
+%\usepackage{physics2} %物理用, ブラケット表示など
+\usepackage{braket} 
+\usepackage{bbm}
+\usepackage{comment} % for \begin{comment}...\end{comment}
+% \usepackage{feynmp-auto} % ファインマン（普段使わないならOFF）
+% \usepackage[ruled, linesnumbered]{algorithm2e} % アルゴリズム（必要ならON）
+\usepackage{caption} % for improved caption handling
+\usepackage{fix-cm}
+\usepackage{relsize} % 文字サイズ相対変更
+\usepackage{physics}
+%図表挿入
+\usepackage{graphicx} % 画像使うよ
+\usepackage{xcolor}
+\usepackage{here}
+% \usepackage{wrapfig} % 回り込み（必要ならON）
+% \usepackage{overpic} % 画像上に描画（必要ならON）
+\usepackage{caption}
+
+% 図や表のキャプションを変更
+%\captionsetup[figure]{labelformat=default, labelsep=period, name=図~, justification=centering}
+%\captionsetup[table]{labelformat=default, labelsep=period, name=表~}
+
+%描画
+% \usepackage{tikz} % 図を描く（必要ならON）
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{float}
+%その他専門性の高いやつ
+% \usepackage{fancybox}
+% \usepackage{tcolorbox}
+% \tcbuselibrary{xparse,hooks,skins,breakable}
+% \tcbuselibrary{theorems}
+% \usepackage[version=3]{mhchem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　　定理環境　　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%定義, 定理, 証明環境の再定義
+% 最小構成にするため一旦OFF（必要になったらON）
+% \renewcommand{\proofname}{\doublebox{\textbf{証明}}}
+% \newtheorem{dfn}{\textbf{定義}}[subsection]
+% \newtheorem{prop}{\textbf{命題}}[subsection]
+% \newtheorem{thm}{\textbf{定理}}[subsection]
+% \renewcommand{\qedsymbol}{} %証明終了記号を表示しないように変更.
+
+% tcolorbox を使う装飾的な証明環境（必要ならON）
+% \DeclareTColorBox{vlinebox}{}{ %縦棒囲い
+% enhanced,
+% colback=white,
+% colframe=white,
+% breakable,
+% underlay={
+% \path[draw, thick, black](frame.north west)--(frame.south west);
+% }
+% }
+% 
+% \newcommand{\vlineproof}[1]{
+% \begin{proof}
+% \begin{vlinebox}
+% {\scriptsize
+% \setlength{\abovedisplayskip}{0pt}
+% \vspace{-6pt}
+% #1
+% \qed{$\blacksquare$}
+% }
+% \end{vlinebox}
+% \end{proof}
+% }
+
+\numberwithin{equation}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% フォントなどの設定 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\thefootnote}{*\arabic{footnote}} % 注釈の設定
+\renewcommand{\headfont}{\bfseries} % 章見出しなどのフォント
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　しおりとリンク　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\hypersetup{
+pdfborder={0 0 0},
+breaklinks=true
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　よく使うコマンドの再定義　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 最小限だけ残す（必要になったら追加）
+\newcommand{\im}{\mathrm{i}}
+\newcommand{\e}{\mathrm{e}}
+
+% \usepackage{colortbl}
+% \newcommand\TODO[1]{\textcolor{red}{({\bf TODO}: #1 )}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　テンプレート用メタ情報　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ここを自分の修論情報に書き換える
+%\newcommand{\ThesisYear}{令和X年度修了}
+%\newcommand{\ThesisTitleLineA}{修士論文タイトル（1行目）}
+%\newcommand{\ThesisTitleLineB}{修士論文タイトル（2行目, 不要なら空にする）}
+%\newcommand{\GraduateSchool}{埼玉大学大学院}
+%\newcommand{\Department}{理工学研究科 物質科学専攻 物理学PG}
+%\newcommand{\StudentID}{XXMSXXX}
+%\newcommand{\AuthorName}{氏名}
+%\newcommand{\Supervisor}{指導教員 XXXX}
+
+%卒業論文用（必要なら上のブロックを置き換える, or 以下を編集して使う）
+ \newcommand{\ThesisYear}{令和7年度卒業}
+ \newcommand{\ThesisTitleLineA}{gGAによるMott転移計算}
+ \newcommand{\ThesisTitleLineB}{}
+ \newcommand{\GraduateSchool}{埼玉大学}
+ \newcommand{\Department}{理学部物理学科}
+ \newcommand{\StudentID}{22RP026}
+ \newcommand{\AuthorName}{東川　喜斗}
+ \newcommand{\Supervisor}{指導教員 品岡　寛}
+
+ \newcommand{\ve}{\varepsilon}
+\newcommand{\vph}{\varphi}
+\newcommand{\si}{\sigma}
+\newcommand{\bk}{\bm{k}}
+\newcommand{\ua}{\uparrow}
+\newcommand{\da}{\downarrow}
+\newcommand{\sq}{\sqrt}
+\newcommand{\ov}{\frac}
+\newcommand{\dgr}{^\dagger}
+\newcommand{\h}{\mathcal{H}}
+\newcommand{\pr}{^\prime}
+\newcommand{\sr}{^*}
+\newcommand{\lkaku}{\lbrack}
+\newcommand{\rkaku}{\rbrack}
+\newcommand{\hV}{\mathcal{V}}
+\newcommand{\bE}{\bm{E}}
+\newcommand{\hL}{\mathcal{L}}
+\newcommand{\br}{\bm{r}}
+\newcommand{\hN}{\mathcal{N}}
+\newcommand{\hR}{\mathcal{R}}
+\newcommand{\hG}{\mathcal{G}}
+\newcommand{\hD}{\mathcal{D}}
+\newcommand{\hU}{\mathcal{U}}
+\newcommand{\hP}{\hat{\mathcal{P}}}
+\newcommand{\kako}[1]{ \left( #1 \right)}
+\newcommand{\ckako}[1]{ \left \{ #1 \right\}}
+\newcommand{\dkako}[1]{ \left[ #1 \right]}
+\newcommand{\kakeru}{\times}
+\newcommand{\mE}{\mathcal{E}}
+\newcommand{\bX}{\bm{X}}
+\newcommand{\bramda}{\bm{\lambda}}
+\newcommand{\henbi}[2]{\ov{\partial #1}{\partial #2}}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　表紙　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\vspace{7cm}
+\begin{center}
+{\Large \ThesisYear}
+
+\vspace{5cm}
+
+{\LARGE
+\begin{tabular}{c}
+\ThesisTitleLineA \\
+\ThesisTitleLineB
+\end{tabular}}
+
+\vspace{5cm}
+
+{\Large \GraduateSchool}
+
+\vspace{0.1cm}
+{\Large \Department}
+
+\vspace{0.1cm}
+{\Large 学籍番号　\StudentID}
+
+\vspace{1cm}
+{\LARGE \AuthorName}
+\vspace{1cm}
+
+{\Large \Supervisor}
+\end{center}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　概要　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+{\large \textbf{概要}}
+\end{center}
+\vspace{0.5cm}
+\input{abstract}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　目次　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{tocdepth}{2}
+{
+\hypersetup{linkcolor=black}
+\tableofcontents
+}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　本編　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{序論}
+\input{chapter1}
+
+\chapter{基礎理論}
+\input{chapter2}
+
+\chapter{モデル/問題設定}
+\input{chapter3}
+
+\chapter{手法}
+\label{sec:method}
+\input{chapter4}
+
+\chapter{結果}
+\input{chapter5}
+
+\chapter{結論}
+\input{conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　付録　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\renewcommand{\appendixname}{付録}
+\appendix
+
+%\chapter{付録A}
+%\input{appendixA}
+
+%\chapter{付録B}
+%\input{appendixB}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　参考文献　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
+\addcontentsline{toc}{chapter}{参考文献}
+\nocite{*}
+\bibliographystyle{apsrev4-2}
+\bibliography{main}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%　　謝辞　　%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\chapter*{謝辞}
+
+\input{acknowledgements}
+
+\end{document}
+

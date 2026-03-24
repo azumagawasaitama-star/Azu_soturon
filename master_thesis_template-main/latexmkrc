@@ -1,0 +1,11 @@
+$pdf_mode = 1;
+
+# LuaLaTeX でPDFを直接生成（日本語: luatexja）
+$pdflatex = 'lualatex %O -interaction=nonstopmode -file-line-error %S';
+
+# 最小構成: natbib + bibtex
+$bibtex = 'bibtex %O %B';
+
+# makeindex（必要なら）
+$makeindex = 'mendex -U %O -o %D %S';
+
